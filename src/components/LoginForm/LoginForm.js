@@ -39,9 +39,9 @@ export default class LoginForm extends Component {
         email: this.state.email,
         password: this.state.password
       };
-      // this.props.login(result);
       console.log('RESULT', result);
-      console.log('\n\nSuccess!!!');
+      this.props.login(result);
+      // console.log('\n\nSuccess!!!');
     }
   };
 
@@ -75,17 +75,9 @@ export default class LoginForm extends Component {
     return (
       <div className="loginform">
         <h1 className="text-center">Login</h1>
-        <RenderInput
-          label="Email"
-          value={this.state.email}
-          name="email"
-          placeholder="example@gmail.com"
-          error={this.state.errorObject.email.error}
-          onChange={this.handleChange}
-          outerGroupClassName={outerGroupClassName}
-          labelClassName={labelClassName}
-          inputGroupClassName={inputGroupClassName}
-        />
+        
+        <RenderInput label="Email" value={this.state.email} name="email" placeholder="example@gmail.com" error={this.state.errorObject.email.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+        
         <RenderPasswordInput
           label="Password"
           value={this.state.password}

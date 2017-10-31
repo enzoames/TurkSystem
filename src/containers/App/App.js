@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -15,36 +14,27 @@ import { asyncConnect } from 'redux-connect';
 import { isLoaded as isAuthLoaded } from 'redux/modules/auth';
 import { load as loadAuth, logout } from '../../actions/Auth/actions';
 
-@asyncConnect([
-  {
-    promise: async ({ store: { dispatch, getState } }) => {
-      if (!isAuthLoaded(getState())) {
-        await dispatch(loadAuth());
-      }
+
+@asyncConnect([{
+  promise: ({ store: { dispatch, getState } }) => {
+    const promises = [];
+    if (!isAuthLoaded(getState())) {
+      promises.push(dispatch(loadAuth()));
     }
+    return Promise.all(promises);
   }
-])
+}])
 @connect(
   state => ({
     user: state.auth.user
   }),
-  { logout, pushState: push }
-)
+  { logout, pushState: push })
 export default class App extends Component {
   static propTypes = {
-    children: PropTypes.element.isRequired,
-    router: PropTypes.shape({
-      location: PropTypes.object
-    }).isRequired,
-    user: PropTypes.shape({
-      email: PropTypes.string
-    }),
+    children: PropTypes.object.isRequired,
+    user: PropTypes.object,
     logout: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    user: null
   };
 
   static contextTypes = {
@@ -52,25 +42,23 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('\n\nApps componentWillReceiveProps PROPS: ', this.props);
     if (!this.props.user && nextProps.user) {
       // login
-      const redirect = this.props.router.location.query && this.props.router.location.query.redirect;
-      this.props.pushState(redirect || '/loginSuccess');
+      this.props.pushState('/loginSuccess');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState('/');
     }
   }
 
-  handleLogout = event => {
+  handleLogout = (event) => {
     event.preventDefault();
     this.props.logout();
   };
 
   render() {
     console.log('\n\nApps PROPS: ', this.props);
-    const { user, children } = this.props;
+    const { user } = this.props;
     const styles = require('./App.scss');
 
     return (
@@ -87,7 +75,7 @@ export default class App extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
 
-          <Navbar.Collapse>
+           <Navbar.Collapse>
             <Nav navbar>
               <LinkContainer to="/systemdemands">
                 <NavItem>System Demands</NavItem>
@@ -122,33 +110,21 @@ export default class App extends Component {
               )}
             </Nav>
           </Navbar.Collapse>
+
         </Navbar>
 
-        <div className={styles.appContent}>{children}</div>
+        <div className={styles.appContent}>
+          {this.props.children}
+        </div>
 
         {/*
         <div className="well text-center">
           FOOTER
         </div>
         */}
+
+
       </div>
     );
   }
-}
-
-// OTHER EXAMPLES YOU CAN DO TO NAV BAR
-{
-  /*
-{user && (
-  <p className="navbar-text">
-    Logged in as <strong>{user.email}</strong>.
-  </p>
-)}
-
-<Nav navbar pullRight>
-  <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example" >
-    <i className="fa fa-github" />
-  </NavItem>
-</Nav>
-*/
 }

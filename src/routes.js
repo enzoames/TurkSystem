@@ -1,32 +1,40 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
-import { routerActions } from 'react-router-redux';
-import { UserAuthWrapper } from 'redux-auth-wrapper';
-import getRoutesUtils from 'utils/routes';
-import { App, Home, NotFound, Register, Clients, Developers, SystemDemands, Account } from 'containers';
+import { isLoaded as isAuthLoaded } from 'redux/modules/auth';
+import { load as loadAuth, logout } from 'actions/Auth/actions';
+import { 
+  App, 
+  Home, 
+  NotFound,
+  Register, 
+  Clients, 
+  Developers, 
+  SystemDemands, 
+  Account 
+} from 'containers';
 
-// eslint-disable-next-line import/no-dynamic-require
-if (typeof System.import === 'undefined') System.import = module => Promise.resolve(require(module));
+export default (store) => {
+  function checkAuth(logged, replace, cb) {
+    const { auth: { user } } = store.getState();
+    if (!!user === !logged) replace('/');
+    cb();
+  }
 
-export default store => {
-  const { injectReducerAndRender, permissionsComponent } = getRoutesUtils(store);
+  const requireLogin = (nextState, replace, cb) => {
+    if (!isAuthLoaded(store.getState())) {
+      store.dispatch(loadAuth()).then(() => checkAuth(true, replace, cb));
+    } else {
+      checkAuth(true, replace, cb);
+    }
+  };
 
-  /* Permissions */
-
-  const isAuthenticated = UserAuthWrapper({
-    authSelector: state => state.auth.user,
-    redirectAction: routerActions.replace,
-    wrapperDisplayName: 'UserIsAuthenticated'
-  });
-
-  const isNotAuthenticated = UserAuthWrapper({
-    authSelector: state => state.auth.user,
-    redirectAction: routerActions.replace,
-    wrapperDisplayName: 'UserIsNotAuthenticated',
-    predicate: user => !user,
-    failureRedirectPath: '/',
-    allowRedirectBack: false
-  });
+  const requireNotLogged = (nextState, replace, cb) => {
+    if (!isAuthLoaded(store.getState())) {
+      store.dispatch(loadAuth()).then(() => checkAuth(false, replace, cb));
+    } else {
+      checkAuth(false, replace, cb);
+    }
+  };
 
   /**
    * Please keep routes in alphabetical order
@@ -36,61 +44,24 @@ export default store => {
       {/* Home (main) route */}
       <IndexRoute component={Home} />
 
-      {/* ============ Routes requiring login ============ */}
-      {/*
-          You can also protect a route like this:
-          <Route path="protected-route" {...permissionsComponent(isAuthenticated)(Component)}>
-        */}
-      <Route {...permissionsComponent(isAuthenticated)()}>
+      {/* Routes requiring login */}
+      <Route onEnter={requireLogin}>
         <Route path="account" component={Account} />
       </Route>
-      {/* ================================================ */}
 
-      {/* ============ Routes Don't login ============ */}
-      {/* These routes show if and only if you are not logged in */}
-      <Route {...permissionsComponent(isNotAuthenticated)()}>
-        <Route path="register" component={Register} />
-        <Route path="clients" component={Clients} />
-        <Route path="developers" component={Developers} />
-        <Route path="systemdemands" component={SystemDemands} />
+      {/* Routes disallow login */}
+      <Route onEnter={requireNotLogged}>
+        {/* <Route path="register" component={Register} /> */}
       </Route>
-      {/* ================================================ */}
 
-      {/* ============ Routes ============ */}
-      {/* Routes show on both authenticated and not authenticated */}
-      {/* <Route path="login" component={Login} /> */}
-      {/* ================================ */}
+      {/* Routes */}
+       <Route path="clients" component={Clients} />
+      <Route path="developers" component={Developers} />
+       <Route path="register" component={Register} /> 
+       <Route path="systemdemands" component={SystemDemands} />
 
-      {/* ============ Catch all route ============ */}
+      {/* Catch all route */}
       <Route path="*" component={NotFound} status={404} />
-      {/* ================================ */}
     </Route>
   );
 };
-
-// sample route
-//      <Route
-//        path="survey"
-//        getComponent={() =>
-//          injectReducerAndRender(
-//            { survey: System.import('./redux/modules/survey') },
-//            System.import('./containers/Survey/Survey')
-//          )}
-//      />
-//      <Route
-//        path="widgets"
-//        getComponent={() =>
-//          injectReducerAndRender(
-//            { widgets: System.import('./redux/modules/widgets') },
-//            System.import('./containers/Widgets/Widgets')
-//          )}
-//      />
-
-//        <Route
-//          path="chatFeathers"
-//          getComponent={() =>
-//            injectReducerAndRender(
-//              { chat: System.import('./redux/modules/chat') },
-//              System.import('./containers/ChatFeathers/ChatFeathers')
-//            )}
-//        />

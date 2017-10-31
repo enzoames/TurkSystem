@@ -1,36 +1,60 @@
-import axios from 'axios';
+import superagent from 'superagent';
 import config from '../config';
 
-export default function apiClient(req) {
-  const instance = axios.create({
-    baseURL: __SERVER__ ? `http://${config.apiHost}:${config.apiPort}` : '/api'
-  });
+const methods = ['get', 'post', 'put', 'patch', 'del'];
 
-  let token;
+function formatUrl(path) {
+  const adjustedPath = path[0] !== '/' ? `/${path}` : path;
+  if (__SERVER__) {
+    // Prepend host and port of the API server to the path.
+    //return `http://${config.apiHost}:${config.apiPort + adjustedPath}`;
+    return config.apiHost + path
+  }
+  // Prepend `/api` to relative URL, to proxy to API server.
+  //return `/api${adjustedPath}`;
+  return config.apiHost + path
+}
 
-  instance.setJwtToken = newToken => {
-    token = newToken;
-  };
+export default class ApiClient {
+  constructor(req) {
+    methods.forEach(method => {
+      this[method] = (path, { params, data, headers, files, fields } = {}) => new Promise((resolve, reject) => {
+        const request = superagent[method](formatUrl(path));
 
-  instance.interceptors.request.use(
-    conf => {
-      if (__SERVER__) {
-        if (req.header('cookie')) {
-          conf.headers.Cookie = req.header('cookie');
+        if (params) {
+          request.query(params);
         }
-        if (req.header('authorization')) {
-          conf.headers.authorization = token || req.header('authorization') || '';
+
+        if (__SERVER__ && req.get('cookie')) {
+          request.set('cookie', req.get('cookie'));
         }
-      }
-      return conf;
-    },
-    error => Promise.reject(error)
-  );
 
-  instance.interceptors.response.use(
-    response => response.data,
-    error => Promise.reject(error.response ? error.response.data : error)
-  );
+        if (headers) {
+          request.set(headers);
+        }
 
-  return instance;
+        if (this.token) {
+          request.set('Authorization', `Bearer ${this.token}`);
+        }
+
+        if (files) {
+          files.forEach(file => request.attach(file.key, file.value));
+        }
+
+        if (fields) {
+          fields.forEach(item => request.field(item.key, item.value));
+        }
+
+        if (data) {
+          request.send(data);
+        }
+
+        request.end((err, { body } = {}) => (err ? reject(body || err) : resolve(body)));
+      });
+    });
+  }
+
+  setJwtToken(token) {
+    this.token = token;
+  }
 }

@@ -1,21 +1,21 @@
 import { hasValue } from './utilfunctions';
 
 const isEmpty = value => value === undefined || value === null || value === '';
-const join = rules => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0];
+const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0 /* first error */ ];
 
 export function email(value) {
   // Let's not start a debate on email regex. This is just for an example app!
   if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
     return 'Invalid email address ';
   }
-  return '';
+  else{ return '';}
 }
 
 export function required(value) {
   if (isEmpty(value)) {
     return 'Required';
   }
-  return '';
+  else{ return '';}
 }
 
 export function minLength(min) {
@@ -23,7 +23,7 @@ export function minLength(min) {
     if (!isEmpty(value) && value.length < min) {
       return `Must be at least ${min} characters `;
     }
-    return '';
+    else{ return '';}
   };
 }
 
@@ -32,7 +32,7 @@ export function maxLength(max) {
     if (!isEmpty(value) && value.length > max) {
       return `Must be no more than ${max} characters `;
     }
-    return '';
+    else{ return '';}
   };
 }
 
@@ -40,7 +40,7 @@ export function integer(value) {
   if (!Number.isInteger(Number(value))) {
     return 'Must be an integer ';
   }
-  return '';
+  else{ return '';}
 }
 
 export function oneOf(enumeration) {
@@ -48,99 +48,101 @@ export function oneOf(enumeration) {
     if (!~enumeration.indexOf(value)) {
       return `Must be one of: ${enumeration.join(', ')} `;
     }
-    return '';
+    else{ return '';}
   };
 }
 
 // NEW MATCH FUNCTION
-export function match(target, value) {
-  if (isEmpty(value)) {
+export function match(target, value){
+  if(isEmpty(value)){
     return 'Required';
   }
-  if (!isEmpty(value) && value !== target) {
+  if (!isEmpty(value) && value!==target){
     return 'Do not match ';
   }
-  return '';
+  else{ return '';} 
+
 }
 
-export function checkbox(value) {
-  if (!value) {
+export function checkbox(value){
+  if(!value){
     return 'check required';
   }
-  return '';
+  else{ return '';}
 }
 
-export function minInteger(target, value) {
-  if (value < target) {
+export function minInteger(target, value){
+  if(value<target){
     return 'Not the minimum amount allowed';
   }
-  return '';
+  else { return '';}
 }
 
-// objectSet = { rule: 'required', value: 'some name' }
-export function createValidatorNew(objectSet) {
-  const switchStatement = (key, value) => {
-    let errorMessage = '';
-    for (let i = 0; i < key.length; i++) {
-      switch (key[i]) {
+
+//objectSet = { rule: 'required', value: 'some name' }
+export function createValidatorNew(objectSet){
+  const switchStatement = (key, value) =>{
+    var errorMessage='';
+    for(let i = 0; i < key.length; i++){
+      switch(key[i]){
         case 'email':
-          errorMessage += email(value);
+          errorMessage+=(email(value));
           continue;
         case 'required':
-          errorMessage += required(value);
+          errorMessage+=(required(value));
           continue;
         case 'match':
-          errorMessage += match(value.target, value.value);
+          errorMessage+=(match(value.target, value.value));
           continue;
         case 'checkbox':
-          errorMessage += checkbox(value);
+          errorMessage+=(checkbox(value));
           continue;
         case 'integer':
-          errorMessage += integer(value);
+          errorMessage+=(integer(value));
           continue;
         case 'minInteger':
-          errorMessage += minInteger(value.target, value.value);
+          errorMessage+=(minInteger(value.target, value.value));
           continue;
         case 'minLength':
-          errorMessage += minLength(value); // NOT WORKING
+          errorMessage+=(minLength(value)); // NOT WORKING 
           continue;
         case 'maxLength':
-          errorMessage += maxLength(value); // NOT WORKING
+          errorMessage+=(maxLength(value)); // NOT WORKING 
           continue;
         case 'oneOf':
-          errorMessage += oneOf(value); // NOT WORKING
+          errorMessage+=(oneOf(value)); // NOT WORKING 
           continue;
         default:
-          errorMessage += '';
+          errorMessage+='';
           continue;
+        }
       }
-    }
-    return errorMessage;
-  };
+    return errorMessage; 
+  }
 
   const messageObject = {};
   let errorsInField = '';
   let counter = 0;
 
-  Object.keys(objectSet).forEach(key => {
-    errorsInField = switchStatement(objectSet[key].rule, objectSet[key].value);
-    if (!isEmpty(errorsInField)) {
-      // if not empty then there is error message
-      counter += 1;
+  Object.keys(objectSet).forEach((key) => {
+    errorsInField = switchStatement( objectSet[key].rule, objectSet[key].value );
+    if (!isEmpty(errorsInField)) { //if not empty then there is error message
+      counter+=1;
     }
-    messageObject[key] = { rule: objectSet[key].rule, value: objectSet[key].value, error: errorsInField };
+    messageObject[key] = {rule: objectSet[key].rule, value: objectSet[key].value, error: errorsInField};
   });
   return {
-    state: messageObject,
-    errorCount: counter
-  };
+    state: messageObject, 
+    errorCount: counter,
+  }
 }
 
-// old function from boiler plate
+
+//old function from boiler plate
 export function createValidator(rules) {
   return (data = {}) => {
     const errors = {};
-    Object.keys(rules).forEach(key => {
+    Object.keys(rules).forEach((key) => {
       const rule = join([].concat(rules[key])); // concat enables both functions and arrays of functions
       const error = rule(data[key], data);
       if (error) {
@@ -151,10 +153,24 @@ export function createValidator(rules) {
   };
 }
 
-// OLD CODE
+
+
+
+
+
+
+
+
+// =====================================================
+// =========== OLD CODE FROM BOILER PLATE ==============
+// =====================================================
+
+
+
+
 
 // const isEmpty = value => value === undefined || value === null || value === '';
-// const join = rules => (value, data, params) => rules.map(rule => rule(value, data, params)).filter(error => !!error)[0];
+// const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0 /* first error */ ];
 
 // export function email(value) {
 //   // Let's not start a debate on email regex. This is just for an example app!
@@ -186,14 +202,14 @@ export function createValidator(rules) {
 // }
 
 // export function integer(value) {
-//   if (!isEmpty(value) && !Number.isInteger(Number(value))) {
+//   if (!Number.isInteger(Number(value))) {
 //     return 'Must be an integer';
 //   }
 // }
 
 // export function oneOf(enumeration) {
 //   return value => {
-//     if (!enumeration.includes(value)) {
+//     if (!~enumeration.indexOf(value)) {
 //       return `Must be one of: ${enumeration.join(', ')}`;
 //     }
 //   };
@@ -209,12 +225,12 @@ export function createValidator(rules) {
 //   };
 // }
 
-// export function createValidator(rules, params) {
+// export function createValidator(rules) {
 //   return (data = {}) => {
 //     const errors = {};
-//     Object.keys(rules).forEach(key => {
+//     Object.keys(rules).forEach((key) => {
 //       const rule = join([].concat(rules[key])); // concat enables both functions and arrays of functions
-//       const error = rule(data[key], data, { key, ...params });
+//       const error = rule(data[key], data);
 //       if (error) {
 //         errors[key] = error;
 //       }

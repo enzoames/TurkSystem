@@ -1,53 +1,33 @@
-import { createStore as _createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
-import { createPersistor } from 'redux-persist';
+import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createMiddleware from './middleware/clientMiddleware';
-import createReducers from './reducer';
+import { routerMiddleware } from 'react-router-redux';
 
-export function inject(store, name, asyncReducer) {
-  if (store.asyncReducers[name]) return;
-  store.asyncReducers[name] = asyncReducer;
-  store.replaceReducer(combineReducers(createReducers(store.asyncReducers)));
-}
+export default function createStore(history, client, data) {
+  // Sync dispatched route actions to the history
+  const reduxRouterMiddleware = routerMiddleware(history);
 
-function getMissingReducers(reducers, data) {
-  if (!data) return {};
-  return Object.keys(data).reduce(
-    (prev, next) => (reducers[next] ? prev : { ...prev, [next]: (state = {}) => state }),
-    {}
-  );
-}
+  const middleware = [createMiddleware(client), reduxRouterMiddleware];
 
-export default function createStore(history, { client, app, restApp }, data, persistConfig = null) {
-  const middleware = [createMiddleware({ client, app, restApp }), routerMiddleware(history)];
-
-  let enhancers = [applyMiddleware(...middleware)];
-  if (__CLIENT__ && __DEVTOOLS__) {
+  let finalCreateStore;
+  if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
     const { persistState } = require('redux-devtools');
     const DevTools = require('../containers/DevTools/DevTools');
-    enhancers = [
-      ...enhancers,
+    finalCreateStore = compose(
+      applyMiddleware(...middleware),
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-    ];
+    )(_createStore);
+  } else {
+    finalCreateStore = applyMiddleware(...middleware)(_createStore);
   }
 
-  const finalCreateStore = compose(...enhancers)(_createStore);
-  const missingReducers = getMissingReducers(createReducers(), data);
-  const store = finalCreateStore(combineReducers(createReducers(missingReducers)), data);
+  const reducer = require('./reducer');
+  const store = finalCreateStore(reducer, data);
 
-  store.asyncReducers = {};
-  store.inject = inject.bind(null, store);
-
-  if (persistConfig) {
-    createPersistor(store, persistConfig);
-    store.dispatch({ type: 'PERSIST' });
-  }
 
   if (__DEVELOPMENT__ && module.hot) {
     module.hot.accept('./reducer', () => {
-      const reducer = require('./reducer');
-      store.replaceReducer(combineReducers((reducer.default || reducer)(store.asyncReducers)));
+      store.replaceReducer(require('./reducer'));
     });
   }
 

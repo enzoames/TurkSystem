@@ -3,16 +3,12 @@ var webpack = require('webpack');
 var projectRootPath = path.resolve(__dirname, '../');
 
 module.exports = {
-  devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? null : 'inline-source-map',
 
   output: {
     path: path.join(projectRootPath, 'static/dist/dlls'),
     filename: 'dll__[name].js',
     library: 'DLL_[name]_[hash]'
-  },
-
-  performance: {
-    hints: false
   },
 
   entry: {
@@ -62,7 +58,6 @@ module.exports = {
 
       // </babel-runtime>
 
-      'axios',
       'multireducer',
       'react',
       'react-bootstrap',
@@ -73,13 +68,21 @@ module.exports = {
       'react-router',
       'react-router-bootstrap',
       'react-router-redux',
-      'react-router-scroll',
       'redux',
       'redux-connect',
       'redux-form',
+      'scroll-behavior',
       'serialize-javascript',
-      'socket.io-client'
+      'socket.io-client',
+      'superagent',
+      'warning',
     ]
+  },
+
+  resolve: {
+    root: path.resolve(projectRootPath, 'node_modules'),
+    extensions: ['', '.js'],
+    postfixes: [],
   },
 
   plugins: [
