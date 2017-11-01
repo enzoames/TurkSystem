@@ -8,7 +8,7 @@ export default class HomePage extends Component {
   }
 
   render() {
-    console.log('\nHomePage PROPS: ', this.props);
+    //console.log('\nHomePage PROPS: ', this.props);
     return <div className="homepage">display here top clients and developers</div>;
   }
 }

@@ -22,7 +22,7 @@ export default (store) => {
 
   const requireLogin = (nextState, replace, cb) => {
     if (!isAuthLoaded(store.getState())) {
-      store.dispatch(loadAuth()).then(() => checkAuth(true, replace, cb));
+      //store.dispatch(loadAuth()).then(() => checkAuth(true, replace, cb));
     } else {
       checkAuth(true, replace, cb);
     }
@@ -30,7 +30,7 @@ export default (store) => {
 
   const requireNotLogged = (nextState, replace, cb) => {
     if (!isAuthLoaded(store.getState())) {
-      store.dispatch(loadAuth()).then(() => checkAuth(false, replace, cb));
+      //store.dispatch(loadAuth()).then(() => checkAuth(false, replace, cb));
     } else {
       checkAuth(false, replace, cb);
     }

@@ -14,6 +14,7 @@ class Home extends Component {
   }
 
   render() {
+    const { auth } = this.props
     const styles = require('./Home.scss');
 
     return (
@@ -24,9 +25,12 @@ class Home extends Component {
           <HomePage />
         </div>
 
+        {!auth.user &&
         <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <LoginForm {...this.props.actions} />
+          <LoginForm auth={this.props.auth} {...this.props.actions} />
         </div>
+        }
+
       </div>
     );
   }

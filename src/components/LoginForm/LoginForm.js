@@ -15,6 +15,15 @@ export default class LoginForm extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log('\n\ncomponentWillReceiveProps LoginForm: ', nextProps);
+    if(nextProps.auth.user == null && nextProps.auth.isLoaded){
+      if(nextProps.auth.error){
+        this.setState({ errorObject: {password: {error: nextProps.auth.error.error}, email: {error: nextProps.auth.error.error} } })
+      }
+    }
+  } 
+
   componentWillMount() {
     const tempPageFields = {
       email: ['email', 'required'],
@@ -26,6 +35,7 @@ export default class LoginForm extends Component {
     });
     this.setState({ errorObject: errorContainer, pageFields: tempPageFields, NullErrorContainer: errorContainer });
   }
+
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -61,6 +71,7 @@ export default class LoginForm extends Component {
   };
 
   render() {
+    console.log('LoginForm STATE: ', this.state);
     console.log('LoginForm PROPS: ', this.props);
 
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
@@ -77,23 +88,8 @@ export default class LoginForm extends Component {
         <h1 className="text-center">Login</h1>
         
         <RenderInput label="Email" value={this.state.email} name="email" placeholder="example@gmail.com" error={this.state.errorObject.email.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        
-        <RenderPasswordInput
-          label="Password"
-          value={this.state.password}
-          name="password"
-          error={this.state.errorObject.email.error}
-          onChange={this.handleChange}
-          outerGroupClassName={outerGroupClassName}
-          labelClassName={labelClassName}
-          inputGroupClassName={inputGroupClassName}
-        />
-        <RenderSubmitButton
-          outerGroupClassName={outerGroupClassName}
-          buttonClassName=""
-          onClick={this.handleSubmit}
-          label="Login"
-        />
+        <RenderPasswordInput label="Password" value={this.state.password} name="password" error={this.state.errorObject.password.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+        <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Login" />
         <h4>Don't have an account ? {renderRegisterLink} </h4>
       </div>
     );

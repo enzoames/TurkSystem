@@ -18,9 +18,9 @@ import { load as loadAuth, logout } from '../../actions/Auth/actions';
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
     const promises = [];
-    if (!isAuthLoaded(getState())) {
-      promises.push(dispatch(loadAuth()));
-    }
+    // if (!isAuthLoaded(getState())) {
+    //   promises.push(dispatch(loadAuth()));
+    // }
     return Promise.all(promises);
   }
 }])
@@ -42,13 +42,16 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    console.log('\n\nApps PROPS: ', this.props);
+    console.log('\n\ncomponentWillReceiveProps: ', nextProps);
     if (!this.props.user && nextProps.user) {
       // login
-      this.props.pushState('/loginSuccess');
+      this.props.pushState('/account');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState('/');
     }
+
   }
 
   handleLogout = (event) => {
@@ -57,7 +60,7 @@ export default class App extends Component {
   };
 
   render() {
-    console.log('\n\nApps PROPS: ', this.props);
+    console.log('\n\nApps PROPS in render: ', this.props);
     const { user } = this.props;
     const styles = require('./App.scss');
 
