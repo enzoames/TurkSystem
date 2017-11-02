@@ -42,7 +42,6 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('\n\nApps PROPS: ', this.props);
     console.log('\n\ncomponentWillReceiveProps: ', nextProps);
     if (!this.props.user && nextProps.user) {
       // login

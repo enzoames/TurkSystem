@@ -8,3 +8,5 @@
 export LoginForm from './LoginForm/LoginForm';
 export HomePage from './HomePage/HomePage';
 export AccountPage from './AccountPage/AccountPage';
+export PostSystemDemand from './PostSystemDemand/PostSystemDemand';
+export MoneyDeposit from './MoneyDeposit/MoneyDeposit';

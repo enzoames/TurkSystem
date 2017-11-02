@@ -15,7 +15,8 @@ class Account extends Component {
       <div className="account">
         <Helmet title="Account" />
 
-        <AccountPage />
+        <AccountPage auth={this.props.auth} />
+
       </div>
     );
   }
@@ -26,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

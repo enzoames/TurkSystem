@@ -3,31 +3,21 @@ import { RenderInput, RenderPasswordInput, RenderSubmitButton } from '../RenderF
 import { createValidatorNew } from '../../utils/validation';
 import { Link } from 'react-router';
 
-export default class LoginForm extends Component {
+export default class MoneyDeposit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      money: '',
+      sentflag: false,
       errorObject: '',
       pageFields: '',
       NullErrorContainer: ''
     };
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log('\n\ncomponentWillReceiveProps LoginForm: ', nextProps);
-    if(nextProps.auth.user == null && nextProps.auth.isLoaded){
-      if(nextProps.auth.error){
-        this.setState({ errorObject: {password: {error: nextProps.auth.error.error}, email: {error: nextProps.auth.error.error} } })
-      }
-    }
-  } 
-
   componentWillMount() {
     const tempPageFields = {
-      email: ['email', 'required'],
-      password: ['required']
+      money: ['required']
     };
     const errorContainer = {};
     Object.keys(tempPageFields).forEach(key => {
@@ -46,13 +36,17 @@ export default class LoginForm extends Component {
     const isThereError = this.checkErrorInValidation(fields);
     if (!isThereError) {
       const result = {
-        email: this.state.email,
-        password: this.state.password
+        'money': this.state.money
       };
       console.log('RESULT', result);
-      this.props.login(result);
-      // console.log('\n\nSuccess!!!');
+      //this.props.login(result);
+      this.setState({sentflag: true})
+      console.log('\n\nSuccess!!!');
     }
+  }
+
+  handleNewDeposit = () => {
+    this.setState({sentflag: false, money: "", errorObject: this.state.NullErrorContainer});
   }
 
   checkValidation = (pageFields, stateFields) => {
@@ -71,27 +65,36 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    console.log('LoginForm STATE: ', this.state);
-    console.log('LoginForm PROPS: ', this.props);
-
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';
-    const renderRegisterLink = (
-      <Link to="/register">
-        <span>Register</span>
-      </Link>
-    );
+
+    const renderSuccessMessage = () => {
+      return(
+        <div>
+          <h4>Your Money has been deposited. Changes to your account can take up to 24hrs, Thank you</h4>
+          <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleNewDeposit} label="Make Another Deposit"/>
+        </div>
+      );
+    }
+
+    const renderDepositMoneyForm = () => {
+      return (
+        <div>
+          <RenderInput label="Amount to Deposit $" value={this.state.money} name="money" placeholder="" error={this.state.errorObject.money.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+          <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Deposit" />
+      </div>);
+    }
 
     return (
-      <div className="loginform">
-        <h1 className="text-center">Login</h1>
-        
-        <RenderInput label="Email" value={this.state.email} name="email" placeholder="example@gmail.com" error={this.state.errorObject.email.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        <RenderPasswordInput label="Password" value={this.state.password} name="password" error={this.state.errorObject.password.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Login" />
-        <h4>Don't have an account ? {renderRegisterLink} </h4>
+      <div className="deposit">
+        {this.state.sentflag ? renderSuccessMessage() : renderDepositMoneyForm() }
       </div>
     );
   }
 }
+
+
+
+
+

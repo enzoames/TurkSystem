@@ -1,2 +1,2 @@
 # TurkSystem
-CSc 336 Turk System - Web Application for Clients and Developers
+CSc 322 Turk System - Web Application for Clients and Developers
