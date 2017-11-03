@@ -10,3 +10,5 @@ export HomePage from './HomePage/HomePage';
 export AccountPage from './AccountPage/AccountPage';
 export PostSystemDemand from './PostSystemDemand/PostSystemDemand';
 export MoneyDeposit from './MoneyDeposit/MoneyDeposit';
+export SystemDemandItem from './SystemDemandItem/SystemDemandItem';
+export SystemDemandList from './SystemDemandList/SystemDemandList';
