@@ -31,9 +31,14 @@ export default class SystemDemandItem extends Component {
           </ul>
 
           <div className="panel-footer text-primary">
-            <a href="">
-              {user.user ? (user.credential === "developer" ? "Click To Bid" : "Click To View As User") : "Click To View As Visitor"}
-            </a>
+          <Link to="systemdemands/jobpage">
+              {user.user ?
+                (user.user.credential === "developer" ?
+                  "Click To Bid"
+                  : "Click To View As User")
+                : "Click To View As Visitor"
+              }
+            </Link>
           </div>
         </div>
       </div>
