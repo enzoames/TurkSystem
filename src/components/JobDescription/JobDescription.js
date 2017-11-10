@@ -12,7 +12,27 @@ export default class JobDescription extends Component {
   render() {
     return (
       <div>
-        This is the job description page
+        Poster
+        <hr/>
+        Detailed description
+        <hr/>
+        time posted,
+        <hr/>
+        deadline,
+        <hr/>
+        bids,
+        <hr/>
+        starting price,
+        <hr/>
+        final price,
+        <hr/>
+        basic description,
+        <hr/>
+        owner,
+        <hr/>
+        status (posted, delivered, timed-out, ongoing, canceled ? ),
+        <hr/>
+        dev rating
       </div>
     );
   }
