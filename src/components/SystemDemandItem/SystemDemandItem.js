@@ -8,10 +8,9 @@ export default class SystemDemandItem extends Component {
     super(props);
   }
 
-
   render() {
     console.log("PROPS IN SystemDemandItem", this.props);
-    const {projectTitle, description, reward, deadline, user} = this.props;
+    const {id, projectTitle, description, reward, deadline, user} = this.props;
 
     return (
       <div className="system-demand-item col-md-4">
@@ -31,7 +30,7 @@ export default class SystemDemandItem extends Component {
           </ul>
 
           <div className="panel-footer text-primary">
-          <Link to="systemdemands/jobpage">
+          <Link to={`systemdemands/jobpage/${id}`}>
               {user.user ?
                 (user.user.credential === "developer" ?
                   "Click To Bid"

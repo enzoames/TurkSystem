@@ -9,7 +9,11 @@ class Clients extends Component {
   }
 
   render() {
-    return <div className="clients">Clients Page</div>;
+    return (
+      <div className="clients">
+        Clients Page
+      </div>
+      );
   }
 }
 

@@ -9,10 +9,16 @@ class JobPage extends Component {
     super(props);
   }
 
+  componentWillMount(){
+    console.log(this.props.params)
+    //this.props.actions.fetchSystemDemand(this.props.params.id);
+  }
+
   render() {
-    return (<div className="jobpage">
-    		<JobDescription/>
-    	</div>);
+    return (
+      <div className="jobpage">
+        <JobDescription/>
+      </div>);
   }
 }
 
