@@ -30,15 +30,7 @@ export default class SystemDemandList extends Component {
          "reward": "$8008"},
          ];
 
-
-      sdList = data.map(things =>
-          <SystemDemandItem 
-              projectTitle={things.projectTitle} 
-              description={things.description} 
-              deadline={things.deadline} 
-              reward={things.reward}
-              user={user} />
-      );
+      sdList = data.map(things => <SystemDemandItem projectTitle={things.projectTitle} description={things.description} deadline={things.deadline} reward={things.reward} user={user} id={1}/>);
       return (
         <div className="system-demand-list">
           {sdList}

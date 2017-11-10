@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { RenderInput, RenderSubmitButton } from '../RenderForm/RenderForm';
-import { PostSystemDemand, MoneyDeposit } from 'components';
+import { PostSystemDemand, MoneyDeposit, PersonalDetails } from 'components';
 import { hasValue } from '../../utils/utilfunctions';
 
 export default  class Account extends Component {
@@ -58,8 +58,10 @@ export default  class Account extends Component {
           </div>
 
 
-          <h3><u>Personal Details</u></h3>
-          
+          <h1 className="text-center"><u>Personal Details</u></h1>
+          <PersonalDetails auth={this.props.auth}/>
+
+
           <h3><u>Current Balance / Deposit Money</u></h3>
           <div className="col-md-12 col-lg-12">
             <blockquote className="blockquote">
@@ -87,8 +89,8 @@ export default  class Account extends Component {
 
           {user.credential === "client" &&  
             <div>
-              <h3><u>Client Option:</u></h3>
-                {user.accepted ? (<PostSystemDemand auth={user} />) : (renderNotAcceptedMessage)}
+              <h1 className="text-center"><u>Client Option:</u></h1>
+                {user.accepted ? (<PostSystemDemand auth={this.props.auth} />) : (renderNotAcceptedMessage)}
             </div>
           }
 

@@ -65,7 +65,7 @@ export const RenderCheckbox = ({label, value, name, options, error, onChange, ou
 export const RenderButton = ({value, name, onClick, position}) => {
   return(
     <div className={position}>
-      <button className="btn btn-default btn-md deal-qs-btn" type='button' name={name} value={value} onClick={onClick} />
+      <button className="btn btn-default btn-md" type='button' name={name} value={value} onClick={onClick} />
     </div>
   );
 }

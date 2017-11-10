@@ -8,7 +8,6 @@ export default class JobDescription extends Component {
     super(props);
   }
 
-
   render() {
     return (
       <div>

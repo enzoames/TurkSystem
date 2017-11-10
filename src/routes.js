@@ -60,7 +60,7 @@ export default (store) => {
       <Route path="developers" component={Developers} />
        <Route path="register" component={Register} /> 
        <Route path="systemdemands" component={SystemDemands} />
-       <Route path="systemdemands/jobpage" component={JobPage} />
+       <Route path="systemdemands/jobpage/:slug" component={JobPage} />
 
       {/* Catch all route */}
       <Route path="*" component={NotFound} status={404} />

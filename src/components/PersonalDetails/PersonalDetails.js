@@ -3,16 +3,17 @@ import { RenderInput, RenderSubmitButton, RenderTextBox } from '../RenderForm/Re
 import { createValidatorNew } from '../../utils/validation';
 import { Link } from 'react-router';
 
-export default class PostSystemDemand extends Component {
+export default class PersonalDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectTitle: '',
-      desciption: '',
-      precondition: '',
-      postcondition: '',
-      reward: '',
-      deadline: '',
+      resume: "",
+      technicalSkills: "",
+      projectExperience: "",
+      interests: "",
+      recentWork: "", //Developer
+      businessCredential: "", //Client
+
       errorObject: '',
       pageFields: '',
       NullErrorContainer: ''
@@ -22,11 +23,12 @@ export default class PostSystemDemand extends Component {
   componentWillMount() {
     const tempPageFields = {
       projectTitle: ['required'],
-      desciption: ['required'],
-      precondition: ['required'],
-      postcondition: ['required'],
-      reward: ['required'],
-      deadline: ['required']
+      resume: ['required'],
+      technicalSkills: ['required'],
+      projectExperience: ['required'],
+      interests: ['required'],
+      recentWork: ['required'], //Developer
+      businessCredential: ['required'] //Client
     };
     const errorContainer = {};
     Object.keys(tempPageFields).forEach(key => {
@@ -50,8 +52,7 @@ export default class PostSystemDemand extends Component {
         precondition: this.state.precondition,
         postcondition: this.state.postcondition,
         reward: this.state.reward,
-        email: this.props.user.email,
-        deadline: this.state.deadline
+        email: this.props.user.email
       };
       console.log('RESULT', result);
       //this.props.login(result);
@@ -90,7 +91,6 @@ export default class PostSystemDemand extends Component {
         <RenderTextBox label="Precondition" value={this.state.precondition} name="precondition" placeholder="" rows={10} error={this.state.errorObject.precondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
         <RenderTextBox label="Postcondition" value={this.state.postcondition} name="postcondition" placeholder="" rows={10} error={this.state.errorObject.postcondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
         <RenderInput label="Reward $" value={this.state.reward} name="reward" placeholder="" error={this.state.errorObject.reward.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        <RenderInput label="Deadline Date: YYYY-MM-DD HH:MM:00" value={this.state.deadline} name="deadline" placeholder="" error={this.state.errorObject.deadline.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
         <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Post" />
       </div>
     );
