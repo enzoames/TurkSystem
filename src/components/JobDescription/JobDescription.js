@@ -9,29 +9,32 @@ export default class JobDescription extends Component {
   }
 
   render() {
+    const {id, projectTitle, description, reward, deadline, user} = this.props;
+      //Status: {}(posted, delivered, timed-out, ongoing, canceled ? ),
     return (
       <div>
-        Poster
+        <h1>{projectTitle}</h1>
+        <p>Job ID: {id}</p>
         <hr/>
-        Detailed description
+        Poster:{}
         <hr/>
-        time posted,
+        Description: {description}
         <hr/>
-        deadline,
+        Full Description: {}
         <hr/>
-        bids,
+        Time Posted: {}
         <hr/>
-        starting price,
+        Deadline: {description}
         <hr/>
-        final price,
+        Bids: {}
         <hr/>
-        basic description,
+        Reward: {reward}
         <hr/>
-        owner,
+        Final Price: {},
         <hr/>
-        status (posted, delivered, timed-out, ongoing, canceled ? ),
+        Status: {},
         <hr/>
-        dev rating
+        Rating: {}
       </div>
     );
   }
