@@ -22,7 +22,6 @@ export default class PersonalDetails extends Component {
 
   componentWillMount() {
     const tempPageFields = {
-      projectTitle: ['required'],
       resume: ['required'],
       technicalSkills: ['required'],
       projectExperience: ['required'],
@@ -47,12 +46,7 @@ export default class PersonalDetails extends Component {
     const isThereError = this.checkErrorInValidation(fields);
     if (!isThereError) {
       const result = {
-        projectTitle: this.state.projectTitle,
-        desciption: this.state.desciption,
-        precondition: this.state.precondition,
-        postcondition: this.state.postcondition,
-        reward: this.state.reward,
-        email: this.props.user.email
+        //projectTitle: this.state.projectTitle,
       };
       console.log('RESULT', result);
       //this.props.login(result);
@@ -76,22 +70,16 @@ export default class PersonalDetails extends Component {
   }
 
   render() {
-    // console.log('LoginForm STATE: ', this.state);
-    // console.log('LoginForm PROPS: ', this.props);
+    // console.log('PersonalDetails STATE: ', this.state);
+    console.log('PersonalDetails PROPS: ', this.props);
 
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';
 
     return (
-      <div className="container postsystemdemand">
-        <h1 className="text-center">Post System Demand</h1>
-        <RenderInput label="projectTitle" value={this.state.projectTitle} name="projectTitle" placeholder="" error={this.state.errorObject.projectTitle.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        <RenderTextBox label="Desciption" value={this.state.desciption} name="desciption" placeholder="detailed description about the system" rows={5} error={this.state.errorObject.desciption.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-        <RenderTextBox label="Precondition" value={this.state.precondition} name="precondition" placeholder="" rows={10} error={this.state.errorObject.precondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-        <RenderTextBox label="Postcondition" value={this.state.postcondition} name="postcondition" placeholder="" rows={10} error={this.state.errorObject.postcondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-        <RenderInput label="Reward $" value={this.state.reward} name="reward" placeholder="" error={this.state.errorObject.reward.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Post" />
+      <div className="container personal-details">
+        personal details page here!
       </div>
     );
   }
