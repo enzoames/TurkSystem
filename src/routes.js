@@ -2,14 +2,14 @@ import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 import { isLoaded as isAuthLoaded } from 'redux/modules/auth';
 import { load as loadAuth, logout } from 'actions/Auth/actions';
-import { 
-  App, 
-  Home, 
+import {
+  App,
+  Home,
   NotFound,
-  Register, 
-  Clients, 
-  Developers, 
-  SystemDemands, 
+  Register,
+  Clients,
+  Developers,
+  SystemDemands,
   Account,
   JobPage
 } from 'containers';
@@ -57,10 +57,10 @@ export default (store) => {
 
       {/* Routes */}
        <Route path="clients" component={Clients} />
-      <Route path="developers" component={Developers} />
-       <Route path="register" component={Register} /> 
+       <Route path="developers" component={Developers} />
+       <Route path="register" component={Register} />
        <Route path="systemdemands" component={SystemDemands} />
-       <Route path="systemdemands/jobpage/:slug" component={JobPage} />
+       <Route path="systemdemands/jobpage/:jobID" component={JobPage} />
 
       {/* Catch all route */}
       <Route path="*" component={NotFound} status={404} />
