@@ -1,4 +1,7 @@
-import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE
+import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE, 
+  REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, 
+  LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, 
+  LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE
 } from '../../redux/modules/constants';
 
 //import cookie from 'js-cookie';
@@ -23,7 +26,7 @@ export function load() {
 
 export function register(body) {
   return {
-    // body should say {"email":"example@gmail.com", "password1":"abc123", "password2":"abc123"}.
+    // body should say {"email":"example@gmail.com", "password1":"abc123", "password2":"abc123"} NOT FOR TURK SYSTEM
     types: [REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE],
     promise: client => client.post('api/turksystem/register/', {
         data: body
@@ -54,3 +57,14 @@ export function logout() {
     promise: client => client.post('api/turksystem/logout/')
   };
 }
+
+
+
+
+
+
+
+
+
+
+
