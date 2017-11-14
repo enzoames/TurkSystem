@@ -13,7 +13,4 @@ export MoneyDeposit from './MoneyDeposit/MoneyDeposit';
 export SystemDemandItem from './SystemDemandItem/SystemDemandItem';
 export SystemDemandList from './SystemDemandList/SystemDemandList';
 export JobDescription from './JobDescription/JobDescription';
-export DevelopersList from './DevelopersList/DevelopersList'
-export Developer from './Developer/Developer'
-export ClientsList from './ClientsList/ClientsList'
-export Client from './Client/Client'
+export PersonalDetails from './PersonalDetails/PersonalDetails';
