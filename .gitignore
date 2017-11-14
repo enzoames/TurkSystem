@@ -16,3 +16,4 @@ src/redux/modules/.DS_Store
 npm-debug.*
 .DS_Store
 .happypack/
+.*.swp
