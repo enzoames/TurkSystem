@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ClientsList } from 'components'
 
 class Clients extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Clients extends Component {
   render() {
     return (
       <div className="clients">
-        Clients Page
+        <ClientsList/>
       </div>
       );
   }
