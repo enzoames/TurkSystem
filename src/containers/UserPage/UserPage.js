@@ -12,7 +12,13 @@ class UserPage extends Component {
 
   render() {
     console.log("The UserID is: " + this.props.params.UID)
-    let row = USERS.developers.concat(USERS.clients)[this.props.params.UID]
+    let row;
+    let userList = USERS.developers.concat(USERS.clients)
+    for (var i = 0; i < userList.length; i+=1) {
+      if (userList[i].id == this.props.params.UID) {
+        row = userList[i];
+      }
+    }
     let sdList = (<UserDisplay name={row.name} bio={row.bio} since={row.since} id={row.id} rating={row.rating}/>);
     return (
       <div className="UserPage container">
