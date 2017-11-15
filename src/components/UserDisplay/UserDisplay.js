@@ -19,6 +19,10 @@ export default class UserDisplay extends Component {
           Member Since: {since}
         <hr/>
           Rating: {rating}
+        <hr/>
+          <Link to='systemdemands'>
+            <button class="btn btn-default btn-md " data-reactid="50">Bids or System Demands</button>
+          </Link>
       </div>
     );
   }
