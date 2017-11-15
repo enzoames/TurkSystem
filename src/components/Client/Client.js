@@ -10,26 +10,29 @@ export default class Client extends Component {
 
   render() {
     console.log("PROPS IN Client", this.props);
-
+    const {name, bio, since, id} = this.props
     return (
       <div className="client col-md-4">
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title">Client Name</div>
+            <div className="panel-title">{name}</div>
           </div>
-
           <div className="panel-body">
-            <p>Client Bio</p>
+            <p>{bio}</p>
           </div>
 
           <ul className="list-group">
-            <li className="list-group-item">Member Since: {}</li>
-            <li className="list-group-item">System Demands</li>
+            <li className="list-group-item">Member Since: { since }</li>
+            <li className="list-group-item">
+              <Link to={`clients/${id}/system-demands`}>
+                View System Demands
+              </Link>
+            </li>
           </ul>
 
           <div className="panel-footer text-primary">
-            <Link to={`systemdemands`}>
+            <Link to={`users/${id}`}>
               Click to view profile
             </Link>
           </div>

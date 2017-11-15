@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { SystemDemandList } from 'components'
+import { SYSDEMANDS } from '../../DummyData'
 
 class SystemDemands extends Component {
   constructor(props) {
@@ -11,8 +12,11 @@ class SystemDemands extends Component {
 
   render() {
     return (
-      <div className="systemdemands">
-      <SystemDemandList user={this.props.auth}/>
+      <div className="systemdemands container">
+        <h1 className="text-center">
+          <u>System Demands</u>
+        </h1>
+        <SystemDemandList systemdemands={SYSDEMANDS} user={this.props.auth}/>
       </div>
     );
   }
