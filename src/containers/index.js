@@ -7,3 +7,4 @@ export Register from './Register/Register';
 export SystemDemands from './SystemDemands/SystemDemands';
 export Account from './Account/Account';
 export JobPage from './JobPage/JobPage';
+export UserPage from './UserPage/UserPage';

@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ClientsList } from 'components'
+import { USERS } from '../../DummyData'
 
 class Clients extends Component {
   constructor(props) {
@@ -11,10 +12,12 @@ class Clients extends Component {
 
   render() {
     return (
-      <div className="clients">
-        <ClientsList/>
-      </div>
-      );
+      <div className="clients container">
+        <h1 className="text-center">
+          <u>Clients</u>
+        </h1>
+        <ClientsList clients={USERS.clients}/>
+      </div>);
   }
 }
 

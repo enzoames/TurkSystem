@@ -11,7 +11,8 @@ import {
   Developers,
   SystemDemands,
   Account,
-  JobPage
+  JobPage,
+  UserPage
 } from 'containers';
 
 export default (store) => {
@@ -61,6 +62,7 @@ export default (store) => {
        <Route path="register" component={Register} />
        <Route path="systemdemands" component={SystemDemands} />
        <Route path="systemdemands/jobpage/:jobID" component={JobPage} />
+       <Route path="users/:UID" component={UserPage} />
 
       {/* Catch all route */}
       <Route path="*" component={NotFound} status={404} />

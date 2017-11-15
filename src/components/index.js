@@ -18,3 +18,4 @@ export Developer from './Developer/Developer'
 export ClientsList from './ClientsList/ClientsList'
 export Client from './Client/Client'
 export PersonalDetails from './PersonalDetails/PersonalDetails';
+export UserDisplay from './UserDisplay/UserDisplay';

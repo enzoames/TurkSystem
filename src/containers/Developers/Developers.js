@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DevelopersList } from 'components'
+import { USERS } from '../../DummyData'
 
 class Developers extends Component {
   constructor(props) {
@@ -11,8 +12,11 @@ class Developers extends Component {
 
   render() {
     return (
-      <div className="developers">
-        <DevelopersList/>
+      <div className="developers container">
+        <h1 className="text-center">
+          <u>Developers</u>
+        </h1>
+        <DevelopersList developers={USERS.developers}/>
       </div>);
   }
 }
