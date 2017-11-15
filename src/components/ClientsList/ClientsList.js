@@ -13,7 +13,7 @@ export default class ClientsList extends Component {
     const {clients, user} = this.props;
     const renderList = () => {
       let sdList;
-      sdList = clients.map(things => <Client name={things.name} bio={things.bio} since={things.since} id={things.id}/>);
+      sdList = clients.map(things => <Client name={things.name} bio={things.bio} since={things.since} id={things.id} rating={things.rating}/>);
       return (
         <div className="client-list">
           {sdList}

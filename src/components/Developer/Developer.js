@@ -10,7 +10,7 @@ export default class Developer extends Component {
 
   render() {
     console.log("PROPS IN Client", this.props);
-    const {name, bio, since, id} = this.props
+    const {name, bio, since, id, rating} = this.props
 
     return (
       <div className="developer col-md-4">
@@ -26,6 +26,7 @@ export default class Developer extends Component {
 
           <ul className="list-group">
             <li className="list-group-item">Member Since: { since }</li>
+            <li className="list-group-item">Rating: { rating }</li>
             <li className="list-group-item">
               <Link to={`developers/${id}/bids`}>
                 View Bids

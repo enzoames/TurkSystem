@@ -10,7 +10,7 @@ export default class Client extends Component {
 
   render() {
     console.log("PROPS IN Client", this.props);
-    const {name, bio, since, id} = this.props
+    const {name, bio, since, id, rating} = this.props
     return (
       <div className="client col-md-4">
         <div className="panel panel-default">
@@ -24,6 +24,7 @@ export default class Client extends Component {
 
           <ul className="list-group">
             <li className="list-group-item">Member Since: { since }</li>
+            <li className="list-group-item">Rating: { rating }</li>
             <li className="list-group-item">
               <Link to={`clients/${id}/system-demands`}>
                 View System Demands
