@@ -9,20 +9,26 @@ export default class JobDescription extends Component {
   }
 
   render() {
-    const {id, projectTitle, description, reward, deadline, user} = this.props;
+    const {id, projectTitle, description, reward, deadline, user, postTime, rating, status, poster} = this.props;
       //Status: {}(posted, delivered, timed-out, ongoing, canceled ? ),
     return (
       <div>
         <h1>{projectTitle}</h1>
+        {user.credential == "developer" ?
+          :
+          <Link to='#'>
+            <button class="btn btn-default btn-md " data-reactid="50">Bid</button>
+          </Link>
+        }
         <p>Job ID: {id}</p>
         <hr/>
-        Poster:{}
+        Poster:{poster}
         <hr/>
         Description: {description}
         <hr/>
         Full Description: {}
         <hr/>
-        Time Posted: {}
+        Time Posted: {postTime}
         <hr/>
         Deadline: {description}
         <hr/>
@@ -30,11 +36,9 @@ export default class JobDescription extends Component {
         <hr/>
         Reward: {reward}
         <hr/>
-        Final Price: {},
+        Final Price: {}
         <hr/>
-        Status: {},
-        <hr/>
-        Rating: {}
+        Status: {status}
       </div>
     );
   }
