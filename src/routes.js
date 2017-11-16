@@ -58,6 +58,7 @@ export default (store) => {
 
       {/* Routes */}
        <Route path="clients" component={Clients} />
+       <Route path="clients/:UID/systemdemands" component={SystemDemands} />
        <Route path="developers" component={Developers} />
        <Route path="register" component={Register} />
        <Route path="systemdemands" component={SystemDemands} />
