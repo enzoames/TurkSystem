@@ -17,7 +17,7 @@ export default class Developer extends Component {
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title">{name}</div>
+            <div className="panel-title text-center">{name}</div>
           </div>
 
           <div className="panel-body">
