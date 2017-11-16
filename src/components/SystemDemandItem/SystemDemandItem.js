@@ -17,7 +17,7 @@ export default class SystemDemandItem extends Component {
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title">{projectTitle}</div>
+            <div className="panel-title text-center">{projectTitle}</div>
           </div>
 
           <div className="panel-body">
@@ -30,13 +30,10 @@ export default class SystemDemandItem extends Component {
           </ul>
 
           <div className="panel-footer text-primary">
-          <Link to={`systemdemands/jobpage/${id}`}>
+          <Link to={`systemdemands/jobpage/${id}/`}>
               {user.user ?
                 (user.user.credential === "developer" ?
-                  "Click To Bid"
-                  : "Click To View As User")
-                : "Click To View As Visitor"
-              }
+                  "Click To Bid" : "Click To View As User") : "Click To View As Visitor"}
             </Link>
           </div>
         </div>
