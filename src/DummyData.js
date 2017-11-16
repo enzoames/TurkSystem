@@ -3,18 +3,27 @@ export var SYSDEMANDS = [
    "description": "Make food come to you more easily",
    "deadline": "Dec 12, 2018",
    "reward": "$1337",
+   "posterID": 103,
+   "postTime": "3 hours ago",
+   "status": "closed",
    "id": 0},
 
   {"projectTitle": "CCNY",
    "description": "College with leaky ceilings",
    "deadline": "January 14, 2020",
    "reward": "$100000000",
+   "posterID": 102,
+   "postTime": "A day ago",
+   "status": "closed",
    "id": 1},
 
   {"projectTitle": "Flora",
    "description": "Online flower shop",
    "deadline": "April 13th, 2019",
    "reward": "$8008",
+   "posterID": 101,
+   "postTime": "A month ago",
+   "status": "open",
    "id": 2},
  ];
 
