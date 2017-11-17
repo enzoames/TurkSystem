@@ -10,7 +10,9 @@ export default class SystemDemandList extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const {user, sysdemnadList } = this.props;
+    console.log("\n\n SYSTEM DEMAND LIST PROPS: ", this.props);
+
     const renderList = () => {
       let sdList;
       let data = [
