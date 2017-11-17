@@ -10,7 +10,7 @@ export default class SystemDemandItem extends Component {
 
   render() {
     console.log("PROPS IN SystemDemandItem", this.props);
-    const {id, projectTitle, description, reward, deadline, user} = this.props;
+    const {id, projectTitle, description, currentBid, deadline, user} = this.props;
 
     return (
       <div className="system-demand-item col-md-4">
@@ -26,7 +26,7 @@ export default class SystemDemandItem extends Component {
 
           <ul className="list-group">
             <li className="list-group-item">Deadline: {deadline}</li>
-            <li className="list-group-item">Reward: {reward}</li>
+            <li className="list-group-item">Current Bid: {currentBid}</li>
           </ul>
 
           <div className="panel-footer text-primary">

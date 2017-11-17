@@ -19,13 +19,12 @@ class UserPage extends Component {
         row = userList[i];
       }
     }
-    let sdList = (<UserDisplay name={row.name} bio={row.bio} since={row.since} id={row.id} rating={row.rating}/>);
     return (
       <div className="UserPage container">
         <h1 className="text-center">
-          <u>Clients</u>
+          <u>{row.name}</u>
         </h1>
-        { sdList }
+        <UserDisplay name={row.name} bio={row.bio} since={row.since} id={row.id} rating={row.rating}/>
       </div>);
   }
 }

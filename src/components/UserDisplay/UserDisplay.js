@@ -12,7 +12,6 @@ export default class UserDisplay extends Component {
     const { name, bio, since, id, rating} = this.props
     return (
       <div>
-          <h1>User Name: {name}</h1>
         <hr/>
           Bio: {bio}
         <hr/>
