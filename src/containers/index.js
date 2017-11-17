@@ -8,3 +8,4 @@ export SystemDemands from './SystemDemands/SystemDemands';
 export Account from './Account/Account';
 export JobPage from './JobPage/JobPage';
 export UserPage from './UserPage/UserPage';
+export BidsPage from './BidsPage/BidsPage';

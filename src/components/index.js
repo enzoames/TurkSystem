@@ -17,5 +17,7 @@ export DevelopersList from './DevelopersList/DevelopersList'
 export Developer from './Developer/Developer'
 export ClientsList from './ClientsList/ClientsList'
 export Client from './Client/Client'
+export Bid from './Bid/Bid'
+export BidsList from './BidsList/BidsList'
 export PersonalDetails from './PersonalDetails/PersonalDetails';
 export UserDisplay from './UserDisplay/UserDisplay';

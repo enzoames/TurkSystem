@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {FormControl, FormGroup, InputGroup, Button} from 'react-bootstrap';
 import { RenderInput, RenderPasswordInput, RenderSubmitButton } from '../RenderForm/RenderForm';
 import { createValidatorNew } from '../../utils/validation';
 import { Link } from 'react-router';
@@ -6,35 +7,53 @@ import { Link } from 'react-router';
 export default class JobDescription extends Component {
   constructor(props) {
     super(props);
+    this.bidAmount = 0;
   }
 
   render() {
-    const {id, projectTitle, description, reward, deadline, user} = this.props;
+    const {id, projectTitle, description, currentBid, deadline, user, postTime, rating, status, poster} = this.props;
+    console.log(this.props);
       //Status: {}(posted, delivered, timed-out, ongoing, canceled ? ),
+      /*
+        {user.credential == "developer" ?
+          :
+        }
+        */
     return (
-      <div>
-        <h1>{projectTitle}</h1>
-        <p>Job ID: {id}</p>
+      <div className="job-description">
         <hr/>
-        Poster:{}
+        Posted By: {poster}
         <hr/>
-        Description: {description}
+        Brief Description: {description}
         <hr/>
         Full Description: {}
         <hr/>
-        Time Posted: {}
+        Time Posted: {postTime}
         <hr/>
         Deadline: {description}
         <hr/>
-        Bids: {}
+        Current Bid: {currentBid}
         <hr/>
-        Reward: {reward}
+        Status: {status}
         <hr/>
-        Final Price: {},
-        <hr/>
-        Status: {},
-        <hr/>
-        Rating: {}
+
+        <Link to={`/bids/${id}`}>
+          View Bids
+        </Link>
+
+        {status === "closed" && <p>Final Price: {currentBid}</p>}
+        {status === "open" &&
+          <div className="col-sm-3 text-center">
+            <FormGroup>
+              <InputGroup>
+                <InputGroup.Addon>$</InputGroup.Addon>
+                <FormControl type="text" placeholder="0.00"/>
+                <InputGroup.Button>
+                  <Button>Submit Bid</Button>
+                </InputGroup.Button>
+              </InputGroup>
+            </FormGroup>
+          </div>}
       </div>
     );
   }

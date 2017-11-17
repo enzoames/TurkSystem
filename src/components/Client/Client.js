@@ -16,7 +16,7 @@ export default class Client extends Component {
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title">{name}</div>
+            <div className="panel-title text-center">{name}</div>
           </div>
           <div className="panel-body">
             <p>{bio}</p>
@@ -26,7 +26,7 @@ export default class Client extends Component {
             <li className="list-group-item">Member Since: { since }</li>
             <li className="list-group-item">Rating: { rating }</li>
             <li className="list-group-item">
-              <Link to={`clients/${id}/system-demands`}>
+              <Link to={`clients/${id}/systemdemands`}>
                 View System Demands
               </Link>
             </li>

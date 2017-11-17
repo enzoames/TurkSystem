@@ -10,14 +10,14 @@ export default class SystemDemandItem extends Component {
 
   render() {
     console.log("PROPS IN SystemDemandItem", this.props);
-    const {id, projectTitle, description, reward, deadline, user} = this.props;
+    const {id, projectTitle, description, currentBid, deadline, user} = this.props;
 
     return (
       <div className="system-demand-item col-md-4">
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title">{projectTitle}</div>
+            <div className="panel-title text-center">{projectTitle}</div>
           </div>
 
           <div className="panel-body">
@@ -26,17 +26,14 @@ export default class SystemDemandItem extends Component {
 
           <ul className="list-group">
             <li className="list-group-item">Deadline: {deadline}</li>
-            <li className="list-group-item">Reward: {reward}</li>
+            <li className="list-group-item">Current Bid: {currentBid}</li>
           </ul>
 
           <div className="panel-footer text-primary">
-          <Link to={`systemdemands/jobpage/${id}`}>
+          <Link to={`systemdemands/jobpage/${id}/`}>
               {user.user ?
                 (user.user.credential === "developer" ?
-                  "Click To Bid"
-                  : "Click To View As User")
-                : "Click To View As Visitor"
-              }
+                  "Click To Bid" : "Click To View As User") : "Click To View As Visitor"}
             </Link>
           </div>
         </div>

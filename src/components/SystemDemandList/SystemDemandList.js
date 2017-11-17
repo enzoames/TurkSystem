@@ -12,7 +12,7 @@ export default class SystemDemandList extends Component {
   render() {
     const {systemdemands, user} = this.props;
     const renderList = () => {
-      let sdList = systemdemands.map(things => <SystemDemandItem projectTitle={things.projectTitle} description={things.description} deadline={things.deadline} reward={things.reward} user={user} id={things.id}/>);
+      let sdList = systemdemands.map(things => <SystemDemandItem projectTitle={things.projectTitle} description={things.description} deadline={things.deadline} currentBid={things.currentBid} user={user} id={things.id}/>);
       return (
         <div className="system-demand-list">
           {sdList}
