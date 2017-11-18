@@ -11,15 +11,18 @@ class SystemDemands extends Component {
   }
 
   componentWillMount(){
-    if(!this.props.sysdemandList.loaded){
+    if(!this.props.systemdemands.isLoaded){
       this.props.actions.fetchSDList();
     }
   }
 
   render() {
     return (
-      <div className="systemdemands">
-      <SystemDemandList sysdemandList={this.props.sysdemandList} user={this.props.auth}/>
+      <div className="systemdemands container">
+        <h1 className="text-center">
+          <u>System Demands</u>
+        </h1>
+        <SystemDemandList systemdemands={this.props.systemdemands} user={this.props.auth}/>
       </div>
     );
   }
@@ -31,7 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  sysdemandList: state.sysdemandList
+  systemdemands: state.systemdemands
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SystemDemands);

@@ -6,7 +6,7 @@ const initialState = {
   sdList: []
 };
 
-export default function sysdemandList(state = initialState, action = {}) {
+export default function systemdemands(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_SD_LIST_REQUEST:
       console.log('\nLOAD_SD_LIST_REQUEST', action);
@@ -38,7 +38,7 @@ export default function sysdemandList(state = initialState, action = {}) {
 // =====================================
 
 export function isLoaded(globalState) {
-  return globalState.sysdemandList && globalState.sysdemandList.isLoaded;
+  return globalState.systemdemands && globalState.systemdemands.isLoaded;
 }
 
 

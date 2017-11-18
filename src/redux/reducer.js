@@ -5,12 +5,17 @@ import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { reducer as form } from 'redux-form';
 import auth from './modules/auth';
 import info from './modules/info';
-import sysdemandList from './modules/sysdemandList';
+import systemdemands from './modules/systemdemands';
+import clients from './modules/clients';
+import developers from './modules/developers';
+
 
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   auth,
   info,
-  sysdemandList
+  systemdemands,
+  clients,
+  developers
 });
