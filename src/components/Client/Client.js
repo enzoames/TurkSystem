@@ -25,7 +25,7 @@ export default class Client extends Component {
           </div>
 
           <ul className="list-group">
-            <li className="list-group-item">Rating: { rating }</li>
+            <li className="list-group-item"><strong>Rating:</strong> {rating}</li>
           </ul>
           
         </div>

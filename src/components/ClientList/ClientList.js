@@ -11,14 +11,12 @@ export default class ClientList extends Component {
 
   render() {
     const {clients} = this.props;
-    console.log("CLIENTLIST PROPS:", this.props);
-
     const renderClientList = clients.isLoaded ? 
       clients.clientList.map( (client) => <Client id={client.id} name={client.name} lastname={client.lastname}  rating={client.rating}/>) : (<div>loading</div>);
 
     return (
       <div className="client-list">
-        <h3>View system demands and personal details for each of our active clients</h3>
+        <h3>Click to view personal details for each of our active clients</h3>
         {renderClientList}
       </div>
     );

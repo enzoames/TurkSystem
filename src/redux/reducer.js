@@ -8,7 +8,7 @@ import info from './modules/info';
 import systemdemands from './modules/systemdemands';
 import clients from './modules/clients';
 import developers from './modules/developers';
-
+import turkuser from './modules/turkuser';
 
 export default combineReducers({
   routing: routerReducer,
@@ -17,5 +17,6 @@ export default combineReducers({
   info,
   systemdemands,
   clients,
-  developers
+  developers,
+  turkuser
 });

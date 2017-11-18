@@ -1,27 +1,27 @@
-import { LOAD_CLIENTS_REQUEST, LOAD_CLIENTS_SUCCESS, LOAD_CLIENTS_FAILURE} from './constants';
+import { LOAD_TURKUSER_REQUEST, LOAD_TURKUSER_SUCCESS, LOAD_TURKUSER_FAILURE} from './constants';
 
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  clientList: []
+  details: "",
 };
 
-export default function clients(state = initialState, action = {}) {
+export default function turkuser(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_CLIENTS_REQUEST:
-      console.log('\nLOAD_CLIENTS_REQUEST', action);
+    case LOAD_TURKUSER_REQUEST:
+      console.log('\nLOAD_TURKUSER_REQUEST', action);
       return Object.assign({}, state, {
         isFetching: true
       });
-    case LOAD_CLIENTS_SUCCESS:
-      console.log('\nLOAD_CLIENTS_SUCCESS', action);
+    case LOAD_TURKUSER_SUCCESS:
+      console.log('\nLOAD_TURKUSER_SUCCESS', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        clientList: action.result
+        details: action.result[0]
       });
-    case LOAD_CLIENTS_FAILURE:
-      console.log('\nLOAD_CLIENTS_FAILURE', action);
+    case LOAD_TURKUSER_FAILURE:
+      console.log('\nLOAD_TURKUSER_FAILURE', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
@@ -37,6 +37,6 @@ export default function clients(state = initialState, action = {}) {
 // =====================================
 
 export function isLoaded(globalState) {
-  return globalState.clients && globalState.clients.isLoaded;
+  return globalState.turkuser && globalState.turkuser.isLoaded;
 }
 

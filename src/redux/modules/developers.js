@@ -18,7 +18,6 @@ export default function developers(state = initialState, action = {}) {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        //accessToken: action.result.accessToken,
         developerList: action.result
       });
     case LOAD_DEVELOPERS_FAILURE:
