@@ -9,34 +9,38 @@ export default class SystemDemandItem extends Component {
   }
 
   render() {
-    console.log("PROPS IN SystemDemandItem", this.props);
-    const {id, projectTitle, description, currentBid, deadline, user} = this.props;
+    const {id, projectTitle, description, status, deadline, client, user} = this.props;
 
     return (
-      <div className="system-demand-item col-md-4">
+      <div className="col-sm-12 col-md-6 col-lg-6 system-demand-item ">
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title text-center">{projectTitle}</div>
+            <h4 className="panel-title text-center">{projectTitle}</h4>
           </div>
 
           <div className="panel-body">
-            <p>{description}</p>
+            <Link to={`clients/profile/${client.id}`}>
+              <h4>{client.name} {client.lastname}</h4>
+            </Link>
+            <strong className="center-block text-center">Description</strong>
+            <span>{description}</span>
           </div>
 
           <ul className="list-group">
-            <li className="list-group-item">Deadline: {deadline}</li>
-            <li className="list-group-item">Current Bid: {currentBid}</li>
+            <li className="list-group-item"><strong>Deadline:</strong> {deadline}</li>
+            <li className="list-group-item"><strong>Status:</strong> {status}</li>
           </ul>
 
           <div className="panel-footer text-primary">
-          <Link to={`systemdemands/jobpage/${id}/`}>
-              {user.user ?
-                (user.user.credential === "developer" ?
-                  "Click To Bid" : "Click To View As User") : "Click To View As Visitor"}
-            </Link>
+
+          <Link to={`systemdemands/details/${id}/`}>
+            {user.user? (user.user.credential === "developer" ? "Click To Bid" : "Click To View As User" ) : ("Click To View As Visitor") }
+          </Link>
+
           </div>
         </div>
+
       </div>
     );
   }

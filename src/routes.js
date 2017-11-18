@@ -11,8 +11,9 @@ import {
   Developers,
   SystemDemands,
   Account,
+  TurkUser,
+
   JobPage,
-  UserPage,
   BidsPage,
 } from 'containers';
 
@@ -58,18 +59,21 @@ export default (store) => {
       </Route>
 
       {/* Routes */}
-       <Route path="clients" component={Clients} />
-       <Route path="clients/:UID/systemdemands" component={SystemDemands} />
-       <Route path="developers" component={Developers} />
+       <Route path="systemdemands" component={SystemDemands} />
+       <Route path="systemdemands/details/:id" component={JobPage} />
 
-       <Route path="developers/:UID/bids" component={BidsPage} />
+       <Route path="clients" component={Clients} />
+       <Route path="clients/profile/:id" component={TurkUser} />
+
+       <Route path="developers" component={Developers} />
+       <Route path="developers/profile/:id" component={TurkUser} />
+
+
        <Route path="bids" component={BidsPage} />
        <Route path="bids/:SDID" component={BidsPage} />
 
+
        <Route path="register" component={Register} />
-       <Route path="systemdemands" component={SystemDemands} />
-       <Route path="systemdemands/jobpage/:jobID" component={JobPage} />
-       <Route path="users/:UID" component={UserPage} />
 
       {/* Catch all route */}
       <Route path="*" component={NotFound} status={404} />
