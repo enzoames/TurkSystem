@@ -17,9 +17,9 @@ export function fetchSDList() {
 // ============== GET SINGLE SYSTEM DEMAND ACTION ==============
 // =============================================================
 
-export function fetchSignleSD(slug) {
+export function fetchSignleSD(id) {
   return {
     types: [LOAD_SINGLE_SD_REQUEST, LOAD_SINGLE_SD_SUCCESS, LOAD_SINGLE_SD_FAILURE],
-    promise: (client) => client.get(`api/turksystem/sysdemand/${slug}`)
+    promise: (client) => client.get(`api/turksystem/sysdemand/${id}`)
   };
 }

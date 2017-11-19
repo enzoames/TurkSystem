@@ -18,8 +18,8 @@ export ClientList from './ClientList/ClientList'
 export Client from './Client/Client'
 export TurkUserProfile from './TurkUserProfile/TurkUserProfile';
 export PersonalDetails from './PersonalDetails/PersonalDetails';
+export SDProfile from './SDProfile/SDProfile';
 
-export JobDescription from './JobDescription/JobDescription';
 export Bid from './Bid/Bid'
 export BidsList from './BidsList/BidsList'
 

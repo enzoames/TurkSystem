@@ -18,7 +18,6 @@ export default function systemdemands(state = initialState, action = {}) {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        //accessToken: action.result.accessToken,
         sdList: action.result
       });
     case LOAD_SD_LIST_FAILURE:

@@ -7,8 +7,6 @@ export Register from './Register/Register';
 export SystemDemands from './SystemDemands/SystemDemands';
 export Account from './Account/Account';
 export TurkUser from './TurkUser/TurkUser';
-
-
-export JobPage from './JobPage/JobPage';
+export SDPage from './SDPage/SDPage';
 
 export BidsPage from './BidsPage/BidsPage';
