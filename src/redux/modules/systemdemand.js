@@ -3,7 +3,7 @@ import { LOAD_SD_REQUEST, LOAD_SD_SUCCESS, LOAD_SD_FAILURE} from './constants';
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  sd: []
+  sd: {}
 };
 
 export default function systemdemand(state = initialState, action = {}) {

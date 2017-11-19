@@ -19,7 +19,7 @@ export function fetchSDList() {
 
 export function fetchSignleSD(id) {
   return {
-    types: [LOAD_SINGLE_SD_REQUEST, LOAD_SINGLE_SD_SUCCESS, LOAD_SINGLE_SD_FAILURE],
+    types: [LOAD_SD_REQUEST, LOAD_SD_SUCCESS, LOAD_SD_FAILURE],
     promise: (client) => client.get(`api/turksystem/sysdemand/${id}`)
   };
 }

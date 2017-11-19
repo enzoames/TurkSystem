@@ -12,7 +12,7 @@ export default class SystemDemandList extends Component {
   render() {
     const {user, systemdemands } = this.props;
     const renderSDList = systemdemands.isLoaded ?
-      (systemdemands.sdList.map( (demand) => <SystemDemandItem projectTitle={demand.title} description={demand.description} deadline={demand.deadline} status={demand.status} client={demand.client} user={user} id={demand.id}/> ) ):(<div>loading</div>);
+      (systemdemands.sdList.map( (demand) => <SystemDemandItem projectTitle={demand.title} description={demand.description} deadline={demand.deadline} reward={demand.reward} status={demand.status} client={demand.client} user={user} id={demand.id}/> ) ):(<div>loading</div>);
 
     return (
       <div className="system-demand-list">

@@ -3,7 +3,7 @@ import { LOAD_TURKUSER_REQUEST, LOAD_TURKUSER_SUCCESS, LOAD_TURKUSER_FAILURE} fr
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  details: "",
+  details: [],
 };
 
 export default function turkuser(state = initialState, action = {}) {

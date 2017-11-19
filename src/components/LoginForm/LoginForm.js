@@ -71,9 +71,6 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    console.log('LoginForm STATE: ', this.state);
-    console.log('LoginForm PROPS: ', this.props);
-
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';

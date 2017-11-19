@@ -11,13 +11,15 @@ class SDPage extends Component {
   }
 
   componentWillMount(){
-    //this.props.actions.fetchSignleSD(this.props.params.id);
+    this.props.actions.fetchSignleSD(this.props.params.id);
   }
 
   render() {
     return (
-      <div className="container jobpage ">
-        <SDProfile systemdemand={this.props.systemdemand}/>
+      <div className="container sd-page">
+        {this.props.systemdemand.isLoaded ? 
+          (<SDProfile systemdemand={this.props.systemdemand}/>) : (<div>Loading . . .</div>)
+        }
       </div>);
   }
 }

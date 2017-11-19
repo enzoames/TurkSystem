@@ -9,7 +9,7 @@ export default class SystemDemandItem extends Component {
   }
 
   render() {
-    const {id, projectTitle, description, status, deadline, client, user} = this.props;
+    const {id, projectTitle, description, reward, status, deadline, client, user} = this.props;
 
     return (
       <div className="col-sm-12 col-md-6 col-lg-6 system-demand-item ">
@@ -28,6 +28,7 @@ export default class SystemDemandItem extends Component {
           </div>
 
           <ul className="list-group">
+            <li className="list-group-item"><strong>Reward:</strong> {reward}</li>
             <li className="list-group-item"><strong>Deadline:</strong> {deadline}</li>
             <li className="list-group-item"><strong>Status:</strong> {status}</li>
           </ul>
