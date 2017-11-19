@@ -17,18 +17,6 @@ class SystemDemands extends Component {
   }
 
   render() {
-    let demands = [];
-    if (this.props.params.UID === undefined) {
-      demands = SYSDEMANDS;
-    }
-    else {
-      for (var i = 0; i < SYSDEMANDS.length; i++) {
-        if (SYSDEMANDS[i].posterID == this.props.params.UID) {
-          demands.push(SYSDEMANDS[i]);
-        }
-      }
-    }
-
     return (
       <div className="systemdemands container">
         <h1 className="text-center">
