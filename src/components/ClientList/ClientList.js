@@ -11,7 +11,7 @@ export default class ClientList extends Component {
 
   render() {
     const {clients} = this.props;
-    const renderClientList = clients.isLoaded ? 
+    const renderClientList = clients.isLoaded ?
       clients.clientList.map( (client) => <Client id={client.id} name={client.name} lastname={client.lastname}  rating={client.rating}/>) : (<div>loading</div>);
 
     return (

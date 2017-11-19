@@ -17,9 +17,7 @@ export default class SystemDemandList extends Component {
     return (
       <div className="system-demand-list">
         {renderSDList}
-      </div>      
+      </div>
     );
   }
 }
-
-

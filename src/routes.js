@@ -64,14 +64,14 @@ export default (store) => {
 
        <Route path="clients" component={Clients} />
        <Route path="clients/profile/:id" component={TurkUser} />
-       
+
        <Route path="developers" component={Developers} />
        <Route path="developers/profile/:id" component={TurkUser} />
-       
+
 
        <Route path="bids" component={BidsPage} />
        <Route path="bids/:SDID" component={BidsPage} />
-       
+
 
        <Route path="register" component={Register} />
 
@@ -80,8 +80,3 @@ export default (store) => {
     </Route>
   );
 };
-
-
-
-
-

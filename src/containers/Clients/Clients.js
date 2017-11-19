@@ -22,7 +22,6 @@ class Clients extends Component {
         <h1 className="text-center"><u>Clients</u></h1>
 
         <ClientList clients={this.props.clients}/>
-      
       </div>);
   }
 }

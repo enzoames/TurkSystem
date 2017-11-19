@@ -33,11 +33,11 @@ export default class SystemDemandItem extends Component {
           </ul>
 
           <div className="panel-footer text-primary">
-          
+
           <Link to={`systemdemands/details/${id}/`}>
             {user.user? (user.user.credential === "developer" ? "Click To Bid" : "Click To View As User" ) : ("Click To View As Visitor") }
           </Link>
-          
+
           </div>
         </div>
 
