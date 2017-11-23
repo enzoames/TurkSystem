@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { SDProfile } from 'components';
-import { fetchSignleSD } from '../../actions/SystemDemand/actions';
+import { fetchSingleSD, fetchBidBySDID } from '../../actions/SystemDemand/actions';
 
 class SDPage extends Component {
   constructor(props) {
@@ -11,25 +11,27 @@ class SDPage extends Component {
   }
 
   componentWillMount(){
-    this.props.actions.fetchSignleSD(this.props.params.id);
+    this.props.actions.fetchSingleSD(this.props.params.sdid);
+    this.props.actions.fetchBidBySDID(this.props.params.sdid);
   }
 
   render() {
     return (
       <div className="container sd-page">
-        {this.props.systemdemand.isLoaded ? 
-          (<SDProfile systemdemand={this.props.systemdemand}/>) : (<div>Loading . . .</div>)
+        {this.props.systemdemand.isLoaded && this.props.bid.isLoaded ? 
+          (<SDProfile systemdemand={this.props.systemdemand} bid={this.props.bid}/>) : (<div>Loading . . .</div>)
         }
       </div>);
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchSignleSD}, dispatch)
+  actions: bindActionCreators({fetchSingleSD, fetchBidBySDID}, dispatch)
 });
 
 const mapStateToProps = (state) => ({
-  systemdemand: state.systemdemand
+  systemdemand: state.systemdemand,
+  bid: state.bid
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SDPage)

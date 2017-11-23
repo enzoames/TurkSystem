@@ -7,7 +7,7 @@ export default class SDProfile extends Component {
   }
 
   render() {
-    const {systemdemand} = this.props;
+    const {systemdemand, bid} = this.props;
     console.log("PROPS IN SDProfile:", this.props);
     const sd = systemdemand.sd;
     const client = systemdemand.sd.client;
@@ -59,11 +59,12 @@ export default class SDProfile extends Component {
         </div>
 
         <div className="col-md-8">
-          <h4 className="text-center">Current Open Bids</h4>
+          <h4 className="text-center"><u>Current Open Bids</u></h4>
+
         </div>
         
         <div className="col-md-4">
-          <h4 className="text-center">Place a Bid for {sd.title}</h4>
+          <h4 className="text-center"><u>Place a Bid for {sd.title}</u></h4>
         </div>
 
         <div className="col-md-12 bg-faded">
