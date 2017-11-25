@@ -14,7 +14,6 @@ import { asyncConnect } from 'redux-connect';
 import { isLoaded as isAuthLoaded } from 'redux/modules/auth';
 import { load as loadAuth, logout } from '../../actions/Auth/actions';
 
-
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
     const promises = [];
@@ -42,7 +41,7 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('\n\ncomponentWillReceiveProps: ', nextProps);
+    console.log('\n\n APP componentWillReceiveProps: ', nextProps);
     if (!this.props.user && nextProps.user) {
       // login
       this.props.pushState('/account');

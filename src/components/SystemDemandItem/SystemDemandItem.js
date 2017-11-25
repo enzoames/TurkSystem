@@ -16,7 +16,9 @@ export default class SystemDemandItem extends Component {
         <div className="panel panel-default">
 
           <div className="panel-heading">
+            <Link to={`systemdemands/details/${id}/`}>
             <h4 className="panel-title text-center">{projectTitle}</h4>
+            </Link>
           </div>
 
           <div className="panel-body">
@@ -28,20 +30,12 @@ export default class SystemDemandItem extends Component {
           </div>
 
           <ul className="list-group">
-            <li className="list-group-item"><strong>Reward:</strong> {reward}</li>
+            <li className="list-group-item"><strong>Reward:</strong>$ {reward}</li>
             <li className="list-group-item"><strong>Deadline:</strong> {deadline}</li>
             <li className="list-group-item"><strong>Status:</strong> {status}</li>
           </ul>
-
-          <div className="panel-footer text-primary">
           
-          <Link to={`systemdemands/details/${id}/`}>
-            {user.user? (user.user.credential === "developer" ? "Click To Bid" : "Click To View As User" ) : ("Click To View As Visitor") }
-          </Link>
-          
-          </div>
         </div>
-
       </div>
     );
   }

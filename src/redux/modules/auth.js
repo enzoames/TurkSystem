@@ -80,6 +80,7 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
+        user: action.result
       });
     case REGISTER_USER_FAILURE:
       console.log('\nREGISTER_USER_FAILURE', action);

@@ -45,6 +45,9 @@ export default class Html extends Component {
           {/* (will be present only in development mode) */}
           {Object.keys(assets.styles).length === 0 ?
             <style dangerouslySetInnerHTML={{ __html: '#content{display:none}' }} /> : null}
+
+          <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css" />
+        
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{ __html: content }} />

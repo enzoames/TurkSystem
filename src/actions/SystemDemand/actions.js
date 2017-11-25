@@ -14,6 +14,17 @@ export function fetchSDList() {
   };
 }
 
+// =================================================================
+// =============== GET CLIENT'S SYSTEM DEMANDS ACTION ==============
+// =================================================================
+
+export function fetchClientSDs(email) {
+  return {
+    types: [LOAD_SD_LIST_REQUEST, LOAD_SD_LIST_SUCCESS, LOAD_SD_LIST_FAILURE],
+    promise: (client) => client.get(`api/turksystem/sysdemand/email/?email=${email}`)
+  };
+}
+
 // =============================================================
 // ============== GET SINGLE SYSTEM DEMAND ACTION ==============
 // =============================================================

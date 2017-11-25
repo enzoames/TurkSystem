@@ -19,8 +19,9 @@ export Client from './Client/Client'
 export TurkUserProfile from './TurkUserProfile/TurkUserProfile';
 export PersonalDetails from './PersonalDetails/PersonalDetails';
 export SDProfile from './SDProfile/SDProfile';
+export BidItem from './BidItem/BidItem'
+export BidForm from './BidForm/BidForm'
+export ChooseBidder from './ChooseBidder/ChooseBidder'
 
-export Bid from './Bid/Bid'
-export BidsList from './BidsList/BidsList'
 
 

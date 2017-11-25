@@ -72,10 +72,10 @@ export function checkbox(value){
 }
 
 export function minInteger(target, value){
-  if(value<target){
+  if(value<target)
     return 'Not the minimum amount allowed';
-  }
-  else { return '';}
+  else
+    return '';
 }
 
 

@@ -19,7 +19,7 @@ class SDPage extends Component {
     return (
       <div className="container sd-page">
         {this.props.systemdemand.isLoaded && this.props.bid.isLoaded ? 
-          (<SDProfile systemdemand={this.props.systemdemand} bid={this.props.bid}/>) : (<div>Loading . . .</div>)
+          (<SDProfile systemdemand={this.props.systemdemand} bid={this.props.bid} user={this.props.user} />) : (<div>Loading . . .</div>)
         }
       </div>);
   }
@@ -31,7 +31,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   systemdemand: state.systemdemand,
-  bid: state.bid
+  bid: state.bid,
+  user: state.auth
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SDPage)
