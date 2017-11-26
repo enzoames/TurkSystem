@@ -1,6 +1,7 @@
 import { LOAD_SD_LIST_REQUEST, LOAD_SD_LIST_SUCCESS, LOAD_SD_LIST_FAILURE,
 	LOAD_SD_REQUEST, LOAD_SD_SUCCESS, LOAD_SD_FAILURE,
 	LOAD_BID_REQUEST, LOAD_BID_SUCCESS, LOAD_BID_FAILURE,
+  LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE
 } from '../../redux/modules/constants';
 
 // ============================================================
@@ -20,7 +21,7 @@ export function fetchSDList() {
 
 export function fetchClientSDs(email) {
   return {
-    types: [LOAD_SD_LIST_REQUEST, LOAD_SD_LIST_SUCCESS, LOAD_SD_LIST_FAILURE],
+    types: [LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE],
     promise: (client) => client.get(`api/turksystem/sysdemand/email/?email=${email}`)
   };
 }

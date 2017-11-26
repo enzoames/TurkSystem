@@ -10,6 +10,7 @@ import clients from './modules/clients';
 import developers from './modules/developers';
 import turkuser from './modules/turkuser';
 import bid from './modules/bid';
+import clientSDs from './modules/clientSDs';
 
 export default combineReducers({
   routing: routerReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   clients,
   developers,
   turkuser,
-  bid
+  bid,
+  clientSDs
 });

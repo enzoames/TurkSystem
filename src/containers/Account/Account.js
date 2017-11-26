@@ -13,18 +13,47 @@ class Account extends Component {
 
   componentWillMount(){
     if(this.props.auth.isLoaded){
-      this.props.actions.fetchBidByEmail(this.props.auth.user.email);
-      this.props.actions.fetchClientSDs(this.props.auth.user.email);
+      if (this.props.auth.user.credential !== 'superuser'){
+        this.props.actions.fetchBidByEmail(this.props.auth.user.email);
+        if (this.props.auth.user.credential === 'client'){
+          this.props.actions.fetchClientSDs(this.props.auth.user.email);
+        }
+      }
     }
   }
 
   render() {
+    const renderAccount = (auth) => {
+      if (auth.isLoaded && auth.isLogedIn){
+        const credential = auth.user.credential;
+        switch (credential) {
+          case 'client':
+            console.log(" ==== CLIENT LOG IN");
+            if(this.props.bid.isLoaded && !this.props.bid.isFetching && this.props.clientSDs.isLoaded && !this.props.clientSDs.isFetching)
+              return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />);
+            else
+              return(<span>Loading . . . </span>);
+          case 'developer':
+            console.log(" ==== DEVELOPER LOG IN");
+            if(this.props.bid.isLoaded && !this.props.bid.isFetching)
+              return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />)
+            else
+              return(<span>Loading . . . </span>);
+          case 'superuser':
+            console.log(" ==== SUPERUSER LOG IN");
+            return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />)
+          default:
+            return(<span>Loading . . . </span>); 
+        }
+      }
+      else
+        return (<span>Loading . . . </span>);
+    }
+
     return (
       <div className="account">
         <Helmet title="Account" />
-        {this.props.auth.isLoaded && this.props.bid.isLoaded && this.props.systemdemands.isLoaded? 
-          (<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.systemdemands} />) : (<span>Loading . . . </span>)
-        }
+          {renderAccount(this.props.auth)}
       </div>
     );
   }
@@ -37,7 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   auth: state.auth,
   bid: state.bid,
-  systemdemands: state.systemdemands
+  clientSDs: state.clientSDs
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

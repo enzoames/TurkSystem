@@ -1,28 +1,28 @@
-import { LOAD_BID_REQUEST, LOAD_BID_SUCCESS, LOAD_BID_FAILURE} from './constants';
+import { LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE} from './constants';
 
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  bidList: []
+  sdList: []
 };
 
-export default function bid(state = initialState, action = {}) {
+export default function clientSDs(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_BID_REQUEST:
-      console.log('\nLOAD_BID_REQUEST', action);
+    case LOAD_CLIENT_SDS_REQUEST:
+      console.log('\nLOAD_CLIENT_SDS_REQUEST', action);
       return Object.assign({}, state, {
         isFetching: true,
         isLoaded: false //new
       });
-    case LOAD_BID_SUCCESS:
-      console.log('\nLOAD_BID_SUCCESS', action);
+    case LOAD_CLIENT_SDS_SUCCESS:
+      console.log('\nLOAD_CLIENT_SDS_SUCCESS', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        bidList: action.result
+        sdList: action.result
       });
-    case LOAD_BID_FAILURE:
-      console.log('\nLOAD_BID_FAILURE', action);
+    case LOAD_CLIENT_SDS_FAILURE:
+      console.log('\nLOAD_CLIENT_SDS_FAILURE', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
@@ -38,6 +38,7 @@ export default function bid(state = initialState, action = {}) {
 // =====================================
 
 export function isLoaded(globalState) {
-  return globalState.bid && globalState.bid.isLoaded;
+  return globalState.clientSDs && globalState.clientSDs.isLoaded;
 }
+
 

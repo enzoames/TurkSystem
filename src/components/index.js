@@ -22,6 +22,7 @@ export SDProfile from './SDProfile/SDProfile';
 export BidItem from './BidItem/BidItem'
 export BidForm from './BidForm/BidForm'
 export ChooseBidder from './ChooseBidder/ChooseBidder'
+export DeveloperBids from './DeveloperBids/DeveloperBids'
 
 
 
