@@ -8,7 +8,7 @@ export default class DeveloperBids extends Component {
 
   render() {
     const {auth, bid} = this.props;
-    console.log("DEVELOPER BIDS PROPS", this.props);
+    //console.log("DEVELOPER BIDS PROPS", this.props);
 
     const renderOpenBids = () => {
       const bids = this.props.bid.bidList;

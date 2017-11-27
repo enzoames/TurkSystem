@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { SDProfile } from 'components';
 import { fetchSingleSD, fetchBidBySDID } from '../../actions/SystemDemand/actions';
+import { postBid } from '../../actions/Bid/actions';
 
 class SDPage extends Component {
   constructor(props) {
@@ -16,17 +17,18 @@ class SDPage extends Component {
   }
 
   render() {
+    console.log(" === SD PAGE PROPS", this.props);
     return (
       <div className="container sd-page">
         {this.props.systemdemand.isLoaded && this.props.bid.isLoaded ? 
-          (<SDProfile systemdemand={this.props.systemdemand} bid={this.props.bid} user={this.props.user} />) : (<div>Loading . . .</div>)
+          (<SDProfile systemdemand={this.props.systemdemand} bid={this.props.bid} user={this.props.user} {...this.props} />) : (<div>Loading . . .</div>)
         }
       </div>);
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchSingleSD, fetchBidBySDID}, dispatch)
+  actions: bindActionCreators({fetchSingleSD, fetchBidBySDID, postBid}, dispatch)
 });
 
 const mapStateToProps = (state) => ({

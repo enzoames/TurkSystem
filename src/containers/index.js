@@ -9,4 +9,3 @@ export Account from './Account/Account';
 export TurkUser from './TurkUser/TurkUser';
 export SDPage from './SDPage/SDPage';
 
-export BidsPage from './BidsPage/BidsPage';

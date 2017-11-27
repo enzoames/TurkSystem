@@ -9,7 +9,7 @@ export default class SDProfile extends Component {
 
   render() {
     const {systemdemand, bid, user} = this.props;
-    console.log("PROPS IN SDProfile:", this.props);
+    console.log(" === PROPS IN SDProfile:", this.props);
     const sd = systemdemand.sd;
     const client = systemdemand.sd.client;
     const bidList = bid.bidList
@@ -72,7 +72,7 @@ export default class SDProfile extends Component {
           (user.user.credential === "developer" ? 
             (<div className="col-md-4">
               <h4 className="text-center"><u>Place a Bid for {sd.title}</u></h4>
-              <BidForm sdID={sd.id} userEmail={user.user.email} />
+              <BidForm sdID={sd.id} userEmail={user.user.email} bid={this.props.bid} {...this.props.actions} />
             </div>):(<span></span>) ) : (<h4>Want to start bidding please <Link to="/register">Register Now</Link></h4>)
         }
         

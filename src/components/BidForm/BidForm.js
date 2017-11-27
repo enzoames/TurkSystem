@@ -11,27 +11,26 @@ export default class BidForm extends Component {
       isBidded: false,
       errorObject: '',
       pageFields: '',
-      NullErrorContainer: ''
+      NullErrorContainer: '',
+      alreadyBidded: false
     };
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   if(nextProps.auth.user == null && nextProps.auth.isLoaded){
-  //     if(nextProps.auth.error){
-  //       this.setState({ errorObject: bid: {error: nextProps.auth.error.error} } })
-  //     }
-  //   }
-  // } 
-
+  
   componentWillMount() {
-    const tempPageFields = {
-      bid: ['minInteger', 'required']
-    };
+    const bidList = this.props.bid.bidList;
+    let didBidFlag = false;
+    const tempPageFields = { bid: ['minInteger', 'required'] };
     const errorContainer = {};
     Object.keys(tempPageFields).forEach(key => {
       errorContainer[key] = { error: null };
     });
-    this.setState({ errorObject: errorContainer, pageFields: tempPageFields, NullErrorContainer: errorContainer });
+
+    for (let i=0; i< bidList.length; i++){
+      if(bidList[i].developer.email === this.props.userEmail)
+        didBidFlag = true;
+    }
+
+    this.setState({ errorObject: errorContainer, pageFields: tempPageFields, NullErrorContainer: errorContainer, alreadyBidded: didBidFlag });
   }
 
   handleChange = (event) => {
@@ -45,8 +44,11 @@ export default class BidForm extends Component {
     if (!isThereError) {
       const result = {
         bid: this.state.bid.value,
+        sdID: this.props.sdID,
+        email: this.props.userEmail
       };
       this.setState({isBidded: true})
+      this.props.postBid(result)
       console.log('RESULT', result);
     }
   }
@@ -73,12 +75,16 @@ export default class BidForm extends Component {
 
     return (
       <div className="bidform">
-        {this.state.isBidded ? (<h4 className="text-success">Your bid has been completed, it will show in the system in a few moments</h4>):
-          (<div>
-            <RenderInput label="Bid Amount $" value={this.state.bid.value} name="bid" placeholder="" error={this.state.errorObject.bid.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-            <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Bid" />
-          </div>)
-        }  
+      {!this.state.alreadyBidded ?
+        (<div>
+          {this.state.isBidded ? (<h4 className="text-success">Your bid has been completed, it will show in the system in a few moments</h4>):
+            (<div>
+              <RenderInput label="Bid Amount $" value={this.state.bid.value} name="bid" placeholder="" error={this.state.errorObject.bid.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+              <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Bid" />
+            </div>)
+          }  
+        </div>) : (<h4>You already bidded for this system demand</h4>)
+      }
       </div>
     );
   }

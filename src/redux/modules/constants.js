@@ -59,11 +59,31 @@ export const LOAD_CLIENT_SDS_SUCCESS = 'LOAD_CLIENT_SDS_SUCCESS';
 export const LOAD_CLIENT_SDS_FAILURE = 'LOAD_CLIENT_SDS_FAILURE';
 
 // RESET STATE
-// export const BID_RESET_REQUEST = 'BID_RESET_REQUEST';
-// export const BID_RESET_SUCCESS = 'BID_RESET_SUCCESS';
-// export const BID_RESET_FAILURE = 'BID_RESET_FAILURE';
 export const CLIENT_SDS_RESET = 'CLIENT_SDS_RESET';
 export const BID_RESET = 'BID_RESET';
+
+//POST BID
+export const POST_BID_REQUEST = 'POST_BID_REQUEST';
+export const POST_BID_SUCCESS = 'POST_BID_SUCCESS';
+export const POST_BID_FAILURE = 'POST_BID_FAILURE';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
