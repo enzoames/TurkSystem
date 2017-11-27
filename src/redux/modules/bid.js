@@ -1,4 +1,6 @@
-import { LOAD_BID_REQUEST, LOAD_BID_SUCCESS, LOAD_BID_FAILURE} from './constants';
+import { 
+  LOAD_BID_REQUEST, LOAD_BID_SUCCESS, LOAD_BID_FAILURE, LOAD_BID_RESET,
+  BID_RESET } from './constants';
 
 const initialState = {
   isFetching: false,
@@ -28,6 +30,15 @@ export default function bid(state = initialState, action = {}) {
         isLoaded: true,
         error: action.error
       });
+
+    case BID_RESET:
+      console.log('\nBID_RESET', action);
+      return Object.assign({}, state, {
+        isFetching: false,
+        isLoaded: false,
+        bidList: []
+      });
+
     default:
       return state;
   }

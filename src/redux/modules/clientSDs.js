@@ -1,4 +1,4 @@
-import { LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE} from './constants';
+import { LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE, CLIENT_SDS_RESET} from './constants';
 
 const initialState = {
   isFetching: false,
@@ -28,6 +28,15 @@ export default function clientSDs(state = initialState, action = {}) {
         isLoaded: true,
         error: action.error
       });
+
+    case CLIENT_SDS_RESET:
+      console.log('\nCLIENT_SDS_RESET', action);
+      return Object.assign({}, state, {
+        isFetching: false,
+        isLoaded: false,
+        sdList: []
+      });
+
     default:
       return state;
   }

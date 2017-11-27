@@ -10,6 +10,7 @@ export default class AccountPage extends Component {
 
   render() {
     const { auth, bid, systemdemands } = this.props;
+    console.log("PROPS IN ACCOUNT PAGE", this.props);
     const user = auth.isLoaded ? auth.user : null;
     const renderNotAcceptedMessage = <h4>Your account must be accepted before any options are available</h4>;
 
@@ -73,8 +74,8 @@ export default class AccountPage extends Component {
               </div>
             }
 
-            {user.credential === "client" && bid.isLoaded && systemdemands.isLoaded ?   
-              (<ChooseBidder bid={bid} systemdemands={systemdemands}/>) : <span>Loading . . .</span>
+            {user.credential === "client" && 
+              (<ChooseBidder bid={bid} systemdemands={systemdemands}/>)
             }
 
           </div>

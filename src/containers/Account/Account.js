@@ -28,15 +28,17 @@ class Account extends Component {
         const credential = auth.user.credential;
         switch (credential) {
           case 'client':
-            console.log(" ==== CLIENT LOG IN");
-            if(this.props.bid.isLoaded && !this.props.bid.isFetching && this.props.clientSDs.isLoaded && !this.props.clientSDs.isFetching)
+            if(this.props.bid.isLoaded && this.props.clientSDs.isLoaded){
+              console.log(" ==== CLIENT DID LOG IN");
               return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />);
+            }
             else
               return(<span>Loading . . . </span>);
           case 'developer':
-            console.log(" ==== DEVELOPER LOG IN");
-            if(this.props.bid.isLoaded && !this.props.bid.isFetching)
+            if(this.props.bid.isLoaded){
+              console.log(" ==== DEVELOPER DID LOG IN");
               return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />)
+            }
             else
               return(<span>Loading . . . </span>);
           case 'superuser':
