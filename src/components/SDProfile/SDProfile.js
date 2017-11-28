@@ -9,7 +9,7 @@ export default class SDProfile extends Component {
 
   render() {
     const {systemdemand, bid, user} = this.props;
-    console.log(" === PROPS IN SDProfile:", this.props);
+    //console.log(" === PROPS IN SDProfile:", this.props);
     const sd = systemdemand.sd;
     const client = systemdemand.sd.client;
     const bidList = bid.bidList

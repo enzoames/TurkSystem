@@ -10,7 +10,7 @@ export default class AccountPage extends Component {
 
   render() {
     const { auth, bid, systemdemands } = this.props;
-    console.log("PROPS IN ACCOUNT PAGE", this.props);
+    console.log(" === PROPS IN ACCOUNT PAGE", this.props);
     const user = auth.isLoaded ? auth.user : null;
     const renderNotAcceptedMessage = <h4>Your account must be accepted before any options are available</h4>;
 
@@ -53,8 +53,10 @@ export default class AccountPage extends Component {
               </blockquote>
             </div>
 
-            <PersonalDetails auth={this.props.auth} />
-            
+            {user.credential !== 'superuser' &&
+              <PersonalDetails auth={this.props.auth} {...this.props.actions} />
+            }
+
             <div className="col-md-12 col-lg-12">
               <h1 className="bg-primary text-center">Deposit Money</h1>
               <h4>Current Balance: ${user.money}</h4>

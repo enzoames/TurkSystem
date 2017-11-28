@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs } from '../../actions/SystemDemand/actions';
+import { updateUserProfile } from '../../actions/Auth/actions';
 
 class Account extends Component {
   constructor(props) {
@@ -30,14 +31,14 @@ class Account extends Component {
           case 'client':
             if(this.props.bid.isLoaded && this.props.clientSDs.isLoaded){
               console.log(" ==== CLIENT DID LOG IN");
-              return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />);
+              return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} {...this.props} />);
             }
             else
               return(<span>Loading . . . </span>);
           case 'developer':
             if(this.props.bid.isLoaded){
               console.log(" ==== DEVELOPER DID LOG IN");
-              return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />)
+              return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} {...this.props} />)
             }
             else
               return(<span>Loading . . . </span>);
@@ -62,7 +63,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs}, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile}, dispatch)
 });
 
 const mapStateToProps = (state) => ({

@@ -17,7 +17,7 @@ class SDPage extends Component {
   }
 
   render() {
-    console.log(" === SD PAGE PROPS", this.props);
+    //console.log(" === SD PAGE PROPS", this.props);
     return (
       <div className="container sd-page">
         {this.props.systemdemand.isLoaded && this.props.bid.isLoaded ? 
