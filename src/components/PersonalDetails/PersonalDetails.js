@@ -13,73 +13,100 @@ export default class PersonalDetails extends Component {
       interests: "",
       recentWork: "", //Developer
       businessCredential: "", //Client
-
-      errorObject: '',
-      pageFields: '',
-      NullErrorContainer: ''
+      didSubmit: false
     };
   }
-
-  componentWillMount() {
-    const tempPageFields = {
-      resume: ['required'],
-      technicalSkills: ['required'],
-      projectExperience: ['required'],
-      interests: ['required'],
-      recentWork: ['required'], //Developer
-      businessCredential: ['required'] //Client
-    };
-    const errorContainer = {};
-    Object.keys(tempPageFields).forEach(key => {
-      errorContainer[key] = { error: null };
-    });
-    this.setState({ errorObject: errorContainer, pageFields: tempPageFields, NullErrorContainer: errorContainer });
-  }
-
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit = () => {
-    const fields = this.checkValidation(this.state.pageFields, this.state);
-    const isThereError = this.checkErrorInValidation(fields);
-    if (!isThereError) {
-      const result = {
-        //projectTitle: this.state.projectTitle,
-      };
-      console.log('RESULT', result);
-      //this.props.login(result);
-      console.log('\n\nSuccess!!!');
+    const result = {
+      user_id: this.props.auth.user.id,
+      resume: this.state.resume,
+      technical_skills: this.state.technicalSkills,
+      project_experience: this.state.projectExperience,
+      interests: this.state.interests,
+      recent_work: this.state.recentWork,
+      business_credential: this.state.businessCredential
     }
-  }
 
-  checkValidation = (pageFields, stateFields) => {
-    // match against current fields (current formpage fields) and all current states and only check for the current Fields.
-    const formFields = {};
-    Object.keys(pageFields).forEach(fieldName => (formFields[fieldName] = { rule: pageFields[fieldName], value: stateFields[fieldName], error: '' }));
-    return createValidatorNew(formFields); // return the array with error, value, and field validation rule
-  }
-
-  checkErrorInValidation = (fields) => {
-    if (fields.errorCount === 0) {
-      return false;
-    }
-    this.setState({ errorObject: fields.state }); // altering the errorObj is what triggers the error mssgs on fields.
-    return true;
+    console.log('RESULT', result);
+    this.props.updateUserProfile(result);
+    this.setState({didSubmit: true})
+    console.log('\n\nSuccess!!!');    
   }
 
   render() {
+    const { auth } = this.props;
+    const user = auth.user;
     // console.log('PersonalDetails STATE: ', this.state);
-    console.log('PersonalDetails PROPS: ', this.props);
+    console.log(' === PersonalDetails PROPS: ', this.props);
 
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';
 
+    const renderCurrentPersonalDetails = <div>
+      <h4 className="text-primary"><u>Resume</u></h4>
+      <span>{user.resume}</span>
+
+      { user.credential === 'developer' &&
+      <div>
+        <h4 className="text-primary"><u>Technical Skills</u></h4>
+        <span>{user.technical_skills}</span>
+        <h4 className="text-primary"><u>Project Experience</u></h4>
+        <span>{user.project_experience}</span>
+      </div>
+      } 
+
+      <h4 className="text-primary"><u>Interests</u></h4>
+      <span>{user.interests}</span>
+      <h4 className="text-primary"><u>Recent Work</u></h4>
+      <span>{user.recent_work}</span>
+
+      { user.credential === 'client' &&
+      <div>
+        <h4 className="text-primary"><u>Business Credential</u></h4>  
+        <span>{user.business_credential}</span>
+      </div>
+      }
+
+    </div>
+
+    const renderPersonalDetails = <div>
+        <RenderTextBox label="Resume" value={this.state.resume} name="resume" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        { user.credential === 'developer' &&
+        <div>
+          <RenderTextBox label="Technical Skills" value={this.state.technicalSkills} name="technicalSkills" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+          <RenderTextBox label="Project Experience" value={this.state.projectExperience} name="projectExperience" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        </div>
+        }
+        <RenderTextBox label="Interests" value={this.state.interests} name="interests" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        <RenderTextBox label="Recent Work" value={this.state.recentWork} name="recentWork" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        {user.credential === 'client' &&
+          <RenderTextBox label="Business Credential" value={this.state.businessCredential} name="businessCredential" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        }
+        <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Submit" />
+      </div>;
+    
     return (
-      <div className="container personal-details">
-        personal details page here!
+      <div className="personal-details">
+
+        <div className="col-md-12">
+          <h1 className="bg-primary text-center">Personal Details</h1>
+          
+          <div className="col-md-12 panel panel-default">
+            {renderCurrentPersonalDetails}
+          </div>
+
+          <h4 className="text-warning">Please fill out as many of the fields as you want</h4>
+          {this.state.didSubmit ? (<h4 className="text-success">Thank you for editing your profile. I detailed profile will garantee more success in the platform</h4>) :
+            (renderPersonalDetails)
+          }
+        </div>
+
       </div>
     );
   }

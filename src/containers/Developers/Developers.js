@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { DeveloperList } from 'components'
-import { fetchDevelopers} from '../../actions/Developers/actions';
+import { DevelopersList } from 'components'
 
 class Developers extends Component {
   constructor(props) {
@@ -19,9 +18,10 @@ class Developers extends Component {
   render() {
     return (
       <div className="developers container">
-        <h1 className="text-center"><u>Developers</u></h1>
-
-        <DeveloperList developers={this.props.developers}/>
+        <h1 className="text-center">
+          <u>Developers</u>
+        </h1>
+        {/*<DevelopersList developers={USERS.developers}/>*/}
       </div>);
   }
 }

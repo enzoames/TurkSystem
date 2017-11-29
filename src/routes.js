@@ -12,8 +12,9 @@ import {
   SystemDemands,
   Account,
   TurkUser,
+  SDPage,
 
-  JobPage,
+
   BidsPage,
 } from 'containers';
 
@@ -60,13 +61,15 @@ export default (store) => {
 
       {/* Routes */}
        <Route path="systemdemands" component={SystemDemands} />
-       <Route path="systemdemands/details/:id" component={JobPage} />
+       <Route path="systemdemands/details/:sdid" component={SDPage} />
 
        <Route path="clients" component={Clients} />
        <Route path="clients/profile/:id" component={TurkUser} />
 
        <Route path="developers" component={Developers} />
        <Route path="developers/profile/:id" component={TurkUser} />
+
+
 
 
        <Route path="bids" component={BidsPage} />

@@ -4,19 +4,23 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { reducer as form } from 'redux-form';
 import auth from './modules/auth';
-import info from './modules/info';
 import systemdemands from './modules/systemdemands';
+import systemdemand from './modules/systemdemand';
 import clients from './modules/clients';
 import developers from './modules/developers';
 import turkuser from './modules/turkuser';
+import bid from './modules/bid';
+import clientSDs from './modules/clientSDs';
 
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   auth,
-  info,
   systemdemands,
+  systemdemand,
   clients,
   developers,
-  turkuser
+  turkuser,
+  bid,
+  clientSDs
 });

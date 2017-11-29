@@ -16,7 +16,6 @@ export default class LoginForm extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log('\n\ncomponentWillReceiveProps LoginForm: ', nextProps);
     if(nextProps.auth.user == null && nextProps.auth.isLoaded){
       if(nextProps.auth.error){
         this.setState({ errorObject: {password: {error: nextProps.auth.error.error}, email: {error: nextProps.auth.error.error} } })
@@ -49,9 +48,7 @@ export default class LoginForm extends Component {
         email: this.state.email,
         password: this.state.password
       };
-      console.log('RESULT', result);
       this.props.login(result);
-      // console.log('\n\nSuccess!!!');
     }
   }
 
@@ -71,9 +68,6 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    console.log('LoginForm STATE: ', this.state);
-    console.log('LoginForm PROPS: ', this.props);
-
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';

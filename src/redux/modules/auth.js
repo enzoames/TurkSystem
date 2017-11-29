@@ -80,6 +80,9 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
+        user: action.result,
+        isLogedIn: true,
+        isLogedOut: false
       });
     case REGISTER_USER_FAILURE:
       console.log('\nREGISTER_USER_FAILURE', action);
@@ -96,7 +99,8 @@ export default function reducer(state = initialState, action = {}) {
     case LOGOUT_USER_REQUEST:
       console.log('\nLOGOUT_USER_REQUEST', action);
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        isLoaded: false, //new
       });
     case LOGOUT_USER_SUCCESS:
       console.log('\nLOGOUT_USER_SUCCESS', action);
@@ -104,7 +108,9 @@ export default function reducer(state = initialState, action = {}) {
         isFetching: false,
         isLoaded: true,
         //accessToken: null,
-        user: null
+        user: null,
+        isLogedIn: false,
+        isLogedOut: true
       });
     case LOGOUT_USER_FAILURE:
       console.log('\nLOGOUT_USER_FAILURE', action);

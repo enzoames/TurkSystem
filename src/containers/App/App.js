@@ -14,6 +14,8 @@ import { asyncConnect } from 'redux-connect';
 import { isLoaded as isAuthLoaded } from 'redux/modules/auth';
 import { load as loadAuth, logout } from '../../actions/Auth/actions';
 
+//RESET ACTIONS
+import { resetBid, resetClientSDs } from '../../actions/Auth/actions';
 
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
@@ -28,12 +30,14 @@ import { load as loadAuth, logout } from '../../actions/Auth/actions';
   state => ({
     user: state.auth.user
   }),
-  { logout, pushState: push })
+  { logout, resetBid, resetClientSDs, pushState: push })
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
+    resetBid: PropTypes.func.isRequired,
+    resetClientSDs: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired
   };
 
@@ -42,7 +46,7 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('\n\ncomponentWillReceiveProps: ', nextProps);
+    console.log('\n\n APP componentWillReceiveProps: ', nextProps);
     if (!this.props.user && nextProps.user) {
       // login
       this.props.pushState('/account');
@@ -55,6 +59,8 @@ export default class App extends Component {
 
   handleLogout = (event) => {
     event.preventDefault();
+    this.props.resetBid();
+    this.props.resetClientSDs();
     this.props.logout();
   };
 

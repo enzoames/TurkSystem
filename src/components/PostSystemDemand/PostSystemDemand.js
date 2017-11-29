@@ -83,12 +83,12 @@ export default class PostSystemDemand extends Component {
     const inputGroupClassName = 'col-sm-12 col-md-12';
 
     return (
-      <div className="container postsystemdemand">
+      <div className="postsystemdemand">
         <h1 className="text-center">Post System Demand</h1>
         <RenderInput label="projectTitle" value={this.state.projectTitle} name="projectTitle" placeholder="" error={this.state.errorObject.projectTitle.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-        <RenderTextBox label="Desciption" value={this.state.desciption} name="desciption" placeholder="detailed description about the system" rows={5} error={this.state.errorObject.desciption.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-        <RenderTextBox label="Precondition" value={this.state.precondition} name="precondition" placeholder="" rows={10} error={this.state.errorObject.precondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-        <RenderTextBox label="Postcondition" value={this.state.postcondition} name="postcondition" placeholder="" rows={10} error={this.state.errorObject.postcondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        <RenderTextBox label="Desciption" value={this.state.desciption} name="desciption" placeholder="detailed description about the system" rows={3} error={this.state.errorObject.desciption.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        <RenderTextBox label="Precondition" value={this.state.precondition} name="precondition" placeholder="" rows={3} error={this.state.errorObject.precondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+        <RenderTextBox label="Postcondition" value={this.state.postcondition} name="postcondition" placeholder="" rows={3} error={this.state.errorObject.postcondition.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
         <RenderInput label="Reward $" value={this.state.reward} name="reward" placeholder="" error={this.state.errorObject.reward.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
         <RenderInput label="Deadline Date: YYYY-MM-DD HH:MM:00" value={this.state.deadline} name="deadline" placeholder="" error={this.state.errorObject.deadline.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
         <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Post" />

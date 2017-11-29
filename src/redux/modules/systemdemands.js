@@ -11,14 +11,14 @@ export default function systemdemands(state = initialState, action = {}) {
     case LOAD_SD_LIST_REQUEST:
       console.log('\nLOAD_SD_LIST_REQUEST', action);
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        isLoaded: false //new
       });
     case LOAD_SD_LIST_SUCCESS:
       console.log('\nLOAD_SD_LIST_SUCCESS', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        //accessToken: action.result.accessToken,
         sdList: action.result
       });
     case LOAD_SD_LIST_FAILURE:

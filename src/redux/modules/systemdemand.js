@@ -1,27 +1,27 @@
-import { LOAD_TURKUSER_REQUEST, LOAD_TURKUSER_SUCCESS, LOAD_TURKUSER_FAILURE} from './constants';
+import { LOAD_SD_REQUEST, LOAD_SD_SUCCESS, LOAD_SD_FAILURE} from './constants';
 
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  details: [],
+  sd: {}
 };
 
-export default function turkuser(state = initialState, action = {}) {
+export default function systemdemand(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_TURKUSER_REQUEST:
-      console.log('\nLOAD_TURKUSER_REQUEST', action);
+    case LOAD_SD_REQUEST:
+      console.log('\nLOAD_SD_REQUEST', action);
       return Object.assign({}, state, {
         isFetching: true
       });
-    case LOAD_TURKUSER_SUCCESS:
-      console.log('\nLOAD_TURKUSER_SUCCESS', action);
+    case LOAD_SD_SUCCESS:
+      console.log('\nLOAD_SD_SUCCESS', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        details: action.result[0]
+        sd: action.result
       });
-    case LOAD_TURKUSER_FAILURE:
-      console.log('\nLOAD_TURKUSER_FAILURE', action);
+    case LOAD_SD_FAILURE:
+      console.log('\nLOAD_SD_FAILURE', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
@@ -37,6 +37,5 @@ export default function turkuser(state = initialState, action = {}) {
 // =====================================
 
 export function isLoaded(globalState) {
-  return globalState.turkuser && globalState.turkuser.isLoaded;
+  return globalState.systemdemand && globalState.systemdemand.isLoaded;
 }
-

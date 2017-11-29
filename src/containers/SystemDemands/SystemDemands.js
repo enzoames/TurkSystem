@@ -22,7 +22,9 @@ class SystemDemands extends Component {
         <h1 className="text-center">
           <u>System Demands</u>
         </h1>
-        <SystemDemandList systemdemands={this.props.systemdemands} user={this.props.auth}/>
+        {this.props.systemdemands.isLoaded &&
+          <SystemDemandList systemdemands={this.props.systemdemands} user={this.props.auth}/>
+        }
       </div>
     );
   }
