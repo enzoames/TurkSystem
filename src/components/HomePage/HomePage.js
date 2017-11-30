@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { ClientList, DeveloperList } from 'components'
+import { ClientList, DeveloperList } from 'components';
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class HomePage extends Component {
 
   render() {
     const {top_clients, top_developers} = this.props;
-
+    console.log("PROPS in HomePage:", this.props);
     return (
       <div className="homepage">
         <h1><u>Top Clients</u></h1>
