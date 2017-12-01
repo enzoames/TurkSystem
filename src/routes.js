@@ -65,10 +65,10 @@ export default (store) => {
 
        <Route path="clients" component={Clients} />
        <Route path="clients/profile/:id" component={TurkUser} />
-       
+
        <Route path="developers" component={Developers} />
        <Route path="developers/profile/:id" component={TurkUser} />
-       
+
 
 
 
@@ -83,8 +83,3 @@ export default (store) => {
     </Route>
   );
 };
-
-
-
-
-

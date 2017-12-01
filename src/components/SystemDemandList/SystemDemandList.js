@@ -20,9 +20,7 @@ export default class SystemDemandList extends Component {
       <div className="system-demand-list">
         {user.user ? (userMessage) : (visitorMessage) }
         {renderSDList}
-      </div>      
+      </div>
     );
   }
 }
-
-

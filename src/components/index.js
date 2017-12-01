@@ -12,7 +12,7 @@ export PostSystemDemand from './PostSystemDemand/PostSystemDemand';
 export MoneyDeposit from './MoneyDeposit/MoneyDeposit';
 export SystemDemandList from './SystemDemandList/SystemDemandList';
 export SystemDemandItem from './SystemDemandItem/SystemDemandItem';
-export DevelopersList from './DevelopersList/DevelopersList'
+export DeveloperList from './DeveloperList/DeveloperList'
 export Developer from './Developer/Developer'
 export ClientList from './ClientList/ClientList'
 export Client from './Client/Client'
@@ -23,6 +23,3 @@ export BidItem from './BidItem/BidItem'
 export BidForm from './BidForm/BidForm'
 export ChooseBidder from './ChooseBidder/ChooseBidder'
 export DeveloperBids from './DeveloperBids/DeveloperBids'
-
-
-

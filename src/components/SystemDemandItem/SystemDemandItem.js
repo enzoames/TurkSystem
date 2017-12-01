@@ -34,7 +34,7 @@ export default class SystemDemandItem extends Component {
             <li className="list-group-item"><strong>Deadline:</strong> {deadline}</li>
             <li className="list-group-item"><strong>Status:</strong> {status}</li>
           </ul>
-          
+
         </div>
       </div>
     );

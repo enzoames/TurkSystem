@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+//import {ResponsiveEmbed} from 'react-bootstrap';
 import { Link } from 'react-router';
+
+import avatar from '../../avatar.png';
 
 export default class TurkUserProfile extends Component {
   constructor(props) {
@@ -14,8 +17,14 @@ export default class TurkUserProfile extends Component {
       const user = turkuser.details;
       return(
         <div>
-          <div className="col-md-3"> 
-            <h4 className="text-center">{user.name} {user.lastname}</h4>  
+          <div className="col-md-3">
+
+          <div style={{width: 500, height: 'auto'}}>
+            <embed src={avatar} />
+          </div>
+          
+          <h4 className="text-center">{user.name} {user.lastname}</h4>
+
             <span><strong>Rating:</strong> {user.rating}</span>
           </div>
 

@@ -10,35 +10,25 @@ export default class Developer extends Component {
 
   render() {
     console.log("PROPS IN Client", this.props);
-    const {name, bio, since, id, rating} = this.props
-
+    const {id, name, lastname, rating} = this.props
     return (
-      <div className="developer col-md-4">
+      <div className="developer col-sm-12 col-md-12 col-lg-12">
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <div className="panel-title text-center">{name}</div>
+            <Link to={`developers/profile/${id}`}>
+              <h4 className="panel-title text-center">{name} {lastname}</h4>
+            </Link>
           </div>
 
           <div className="panel-body">
-            <p>{bio}</p>
+            <span>quick bio goes here</span>
           </div>
 
           <ul className="list-group">
-            <li className="list-group-item">Member Since: { since }</li>
-            <li className="list-group-item">Rating: { rating }</li>
-            <li className="list-group-item">
-              <Link to={`developers/${id}/bids`}>
-                View Bids
-              </Link>
-            </li>
+            <li className="list-group-item"><strong>Rating:</strong> {rating}</li>
           </ul>
 
-          <div className="panel-footer text-primary">
-            <Link to={`users/${id}`}>
-              Click to view profile
-            </Link>
-          </div>
         </div>
       </div>
     );
