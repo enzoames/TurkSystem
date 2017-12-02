@@ -12,7 +12,7 @@ export default class DeveloperList extends Component {
   render() {
     const {developers} = this.props;
     const renderDeveloperList = developers.isLoaded ?
-      developers.developerList.map( (developer) => <Developer id={developer.id} name={developer.name} lastname={developer.lastname}  rating={developer.rating}/>) : (<div>loading</div>);
+      developers.developerList.map( (developer) => <Developer id={developer.id} name={developer.name} lastname={developer.lastname} bio={developer.bio} rating={developer.rating}/>) : (<div>loading</div>);
 
     return (
       <div className="developer-list">

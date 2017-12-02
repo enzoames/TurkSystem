@@ -7,6 +7,7 @@ export default class PersonalDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      bio: "",
       resume: "",
       technicalSkills: "",
       projectExperience: "",
@@ -23,6 +24,7 @@ export default class PersonalDetails extends Component {
 
   handleSubmit = () => {
     const result = {
+      bio: this.state.bio,
       user_id: this.props.auth.user.id,
       resume: this.state.resume,
       technical_skills: this.state.technicalSkills,
@@ -47,6 +49,9 @@ export default class PersonalDetails extends Component {
     const inputGroupClassName = 'col-sm-12 col-md-12';
 
     const renderCurrentPersonalDetails = <div>
+      <h4 className="text-primary"><u>Bio</u></h4>
+      <span>{user.bio}</span>
+      
       <h4 className="text-primary"><u>Resume</u></h4>
       <span>{user.resume}</span>
 
@@ -74,6 +79,7 @@ export default class PersonalDetails extends Component {
     </div>
 
     const renderPersonalDetails = <div>
+        <RenderTextBox label="Bio" value={this.state.bio} name="bio" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
         <RenderTextBox label="Resume" value={this.state.resume} name="resume" placeholder="" rows={3}  onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
         { user.credential === 'developer' &&
         <div>
