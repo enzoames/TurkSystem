@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs } from '../../actions/SystemDemand/actions';
+import { fetchBidSelectionsByClient } from '../../actions/Clients/actions';
 import { updateUserProfile } from '../../actions/Auth/actions';
 
 class Account extends Component {
@@ -44,9 +45,9 @@ class Account extends Component {
               return(<span>Loading . . . </span>);
           case 'superuser':
             console.log(" ==== SUPERUSER LOG IN");
-            return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} />)
+            return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} {...this.props}/>)
           default:
-            return(<span>Loading . . . </span>); 
+            return(<span>Loading . . . </span>);
         }
       }
       else
@@ -63,13 +64,14 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile}, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, fetchBidSelectionsByClient }, dispatch)
 });
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   bid: state.bid,
-  clientSDs: state.clientSDs
+  clientSDs: state.clientSDs,
+  selectedBids: state.selectedBids
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

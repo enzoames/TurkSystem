@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, DeveloperBids } from 'components';
+import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, ChosenBids, DeveloperBids } from 'components';
 import { hasValue } from '../../utils/utilfunctions';
 import { Link } from 'react-router';
 
@@ -23,7 +23,7 @@ export default class AccountPage extends Component {
           }
 
           <div className="container">
-            
+
             <div className="col-md-12 col-lg-12">
               <h3><u>Message from Administrator</u></h3>
               <blockquote className="blockquote">
@@ -38,7 +38,7 @@ export default class AccountPage extends Component {
                 {user.accepted && <h4 className="text-primary">Accepted</h4>}
               </blockquote>
             </div>
-            
+
             <div className="col-md-12 col-lg-12">
               <h3><u>Rating</u></h3>
               <blockquote className="blockquote">
@@ -60,24 +60,28 @@ export default class AccountPage extends Component {
             <div className="col-md-12 col-lg-12">
               <h1 className="bg-primary text-center">Deposit Money</h1>
               <h4>Current Balance: ${user.money}</h4>
-              {user.pending ? (<h4>Account must be accepted before depositing money</h4>) : 
+              {user.pending ? (<h4>Account must be accepted before depositing money</h4>) :
                 (<MoneyDeposit auth={this.props.auth} />)
               }
             </div>
-            
+
             {user.credential === "developer" &&
               <DeveloperBids auth={auth} bid={bid}/>
-            } 
+            }
 
-            {user.credential === "client" &&  
+            {user.credential === "client" &&
               <div className="col-md-12 col-lg-12">
                 <h1 className="bg-primary text-center">Client Option</h1>
                 {user.accepted ? (<PostSystemDemand auth={this.props.auth} />) : (renderNotAcceptedMessage)}
               </div>
             }
 
-            {user.credential === "client" && 
+            {user.credential === "client" &&
               (<ChooseBidder bid={bid} systemdemands={systemdemands}/>)
+            }
+
+            {user.credential === "client" &&
+              (<ChosenBids selectedBids={this.props.selectedBids}/>)
             }
 
           </div>
