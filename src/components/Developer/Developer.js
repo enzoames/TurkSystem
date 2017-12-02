@@ -9,7 +9,6 @@ export default class Developer extends Component {
   }
 
   render() {
-    console.log("PROPS IN Client", this.props);
     const {id, name, lastname, rating} = this.props
     return (
       <div className="developer col-sm-12 col-md-12 col-lg-12">

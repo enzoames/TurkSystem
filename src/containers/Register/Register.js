@@ -98,8 +98,6 @@ class Register extends Component {
   }
 
   render() {
-    console.log("REGISTER PROPS", this.props);
-    console.log("REGISTER STATE", this.state);
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';

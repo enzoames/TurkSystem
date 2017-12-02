@@ -78,8 +78,6 @@ export default class ChooseBidder extends Component {
 
   render() {
     const {bid, systemdemands} = this.props;
-    console.log("\n ChooseBidder STATE: ", this.state);
-    console.log("\n ===> ChooseBidder PROPS: ", this.props);
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const bidList = bid.bidList.filter( (bid) => bid.systemdemand.status === "Open");
     const sdList = systemdemands.sdList.filter( (sd) => sd.status === "Open");

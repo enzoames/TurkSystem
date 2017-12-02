@@ -10,7 +10,6 @@ export default class TurkUserProfile extends Component {
   }
 
   render() {
-    console.log("PROPS TURKUSER IN TurkUserProfile", this.props);
     const { turkuser } = this.props;
 
     const renderTemplate = () => {
