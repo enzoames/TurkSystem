@@ -31,15 +31,19 @@ class Home extends Component {
   }
 
   render() {
-    const { auth } = this.props
+    const { auth } = this.props;
     const styles = require('./Home.scss');
 
-    let top_clients = this.get_top_k(this.props.clients.clientList, 2);
+    console.log("PROPS in Home: ", this.props);
+
+    let top_clients    = this.get_top_k(this.props.clients.clientList, 2);
     let top_developers = this.get_top_k(this.props.developers.developerList, 2);
 
-    let top_client_dic = {clientList: top_clients,
+    let top_client_dic = {
+      clientList: top_clients,
       isLoaded: true};
-    let top_dev_dic = {developerList: top_developers,
+    let top_dev_dic = {
+      developerList: top_developers,
       isLoaded: true};
 
     return (

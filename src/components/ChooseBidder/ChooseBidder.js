@@ -65,7 +65,7 @@ export default class ChooseBidder extends Component {
     })
     if(isThereErrorFlag){
       let chosenDevelopers = this.state.developersChosen;
-      chosenDevelopers = chosenDevelopers.filter( (dev) => dev.chosen == true ); 
+      chosenDevelopers = chosenDevelopers.filter( (dev) => dev.chosen == true );
       this.props.submitChosenDeveloper(chosenDevelopers)
       console.log("SUCCESS", chosenDevelopers);
       this.setState({didSubmit: true, isThereError: false});
@@ -77,7 +77,7 @@ export default class ChooseBidder extends Component {
 
 
   render() {
-    const {bid, systemdemands} = this.props; 
+    const {bid, systemdemands} = this.props;
     console.log("\n ChooseBidder STATE: ", this.state);
     console.log("\n ===> ChooseBidder PROPS: ", this.props);
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
@@ -90,7 +90,7 @@ export default class ChooseBidder extends Component {
         const bidsForCurrentSD = bidList.map( (bid) => {
           let currentBids = '';
           if (bid.systemdemand.id === currentSD){
-            currentBids = 
+            currentBids =
               <div className="panel panel-default" onClick={ (e)=> this.handleSelectBid(e, bid.developer.id, bid.developer.name, currentSD)}>
                 <div><span>{bid.developer.name} ${bid.price}</span></div>
               </div>;
@@ -123,11 +123,11 @@ export default class ChooseBidder extends Component {
       <div className="choose-bidder">
         <div className="col-md-12 col-lg-12">
           <h1 className="bg-primary text-center">Choose a bidder for your System Demands</h1>
-          {RenderBidForEachSD()} 
+          {RenderBidForEachSD()}
         </div>
 
         <div>
-          <div className="col-md-12 col-lg-12">  
+          <div className="col-md-12 col-lg-12">
             <h3>Your current selected Developers</h3>
             {hasValue(this.state.developersChosen) && renderSelectedDevelopers() }
           </div>
@@ -137,12 +137,9 @@ export default class ChooseBidder extends Component {
           }
           {this.state.isThereError && <span className="text-danger">Must choose at least one developer</span> }
         </div>
-      
+
       </div>
 
     );
   }
 }
-
-
-

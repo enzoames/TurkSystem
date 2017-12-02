@@ -9,6 +9,7 @@ export default class HomePage extends Component {
 
   render() {
     const {top_clients, top_developers} = this.props;
+    console.log("PROPS in HomePage:", this.props);
     return (
       <div className="homepage">
         <h1><u>Top Clients</u></h1>
