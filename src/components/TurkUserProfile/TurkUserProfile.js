@@ -10,8 +10,6 @@ export default class TurkUserProfile extends Component {
     const { turkuser } = this.props;
     const user = turkuser.details;
 
-    console.log(" ====> TURK USER PROFILE PROPS", this.props);
-    
     const renderClientTemplate = () => {
       return(
         <div>
@@ -31,7 +29,7 @@ export default class TurkUserProfile extends Component {
             <blockquote className="blockquote">
               <h4>{user.resume}</h4>
             </blockquote>
-            
+
             <h3 className="text-primary">Interests</h3>
             <blockquote className="blockquote">
               <h4>{user.interests}</h4>
@@ -71,12 +69,12 @@ export default class TurkUserProfile extends Component {
             <blockquote className="blockquote">
               <h4>{user.bio}</h4>
             </blockquote>
-            
+
             <h3 className="text-primary">Resume</h3>
             <blockquote className="blockquote">
               <h4>{user.resume}</h4>
             </blockquote>
-            
+
             <h3 className="text-primary">Technical Skills</h3>
             <blockquote className="blockquote">
               <h4>{user.technical_skills}</h4>
@@ -104,7 +102,6 @@ export default class TurkUserProfile extends Component {
       );
     }
 
-
     return (
       <div className="turkuser">
         {user.credential === 'client' && renderClientTemplate()}
@@ -113,7 +110,3 @@ export default class TurkUserProfile extends Component {
     );
   }
 }
-
-
-
-

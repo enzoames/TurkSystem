@@ -19,13 +19,13 @@ export default class AccountPage extends Component {
         {hasValue(user) &&
         <div>
           {user.credential === "superuser" &&
-            (<h1 className="bg-primary text-center">SUPERUSER ACCOUNT</h1>) 
+            (<h1 className="bg-primary text-center">SUPERUSER ACCOUNT</h1>)
           }
           {user.credential === "client" &&
-            (<h1 className="bg-primary text-center">Client Account</h1>) 
+            (<h1 className="bg-primary text-center">Client Account</h1>)
           }
           {user.credential === "developer" &&
-            (<h1 className="bg-primary text-center">Developer Account</h1>) 
+            (<h1 className="bg-primary text-center">Developer Account</h1>)
           }
 
           <div className="container">

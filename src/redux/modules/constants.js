@@ -91,9 +91,3 @@ export const DEPOSIT_MONEY_FAILURE = 'DEPOSIT_MONEY_FAILURE';
 export const POST_SD_REQUEST = 'POST_SD_REQUEST';
 export const POST_SD_SUCCESS = 'POST_SD_SUCCESS';
 export const POST_SD_FAILURE = 'POST_SD_FAILURE';
-
-
-
-
-
-
