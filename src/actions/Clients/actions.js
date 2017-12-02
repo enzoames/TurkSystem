@@ -1,6 +1,10 @@
 import { LOAD_CLIENTS_REQUEST, LOAD_CLIENTS_SUCCESS, LOAD_CLIENTS_FAILURE,
+  j
          LOAD_CLIENT_BID_SELECTION_REQUEST , LOAD_CLIENT_BID_SELECTION_SUCCESS,
-         LOAD_CLIENT_BID_SELECTION_FAILURE } from '../../redux/modules/constants';
+         LOAD_CLIENT_BID_SELECTION_FAILURE,
+
+         SUBMIT_CHOSEN_DEVELOPER_REQUEST, SUBMIT_CHOSEN_DEVELOPER_SUCCESS,
+         SUBMIT_CHOSEN_DEVELOPER_FAILURE } from '../../redux/modules/constants';
 
 // ==============================================
 // =============== GET ALL CLIENTS ==============
@@ -22,5 +26,20 @@ export function fetchBidSelectionsByClient(email) {
   return {
     types: [LOAD_CLIENT_BID_SELECTION_REQUEST , LOAD_CLIENT_BID_SELECTION_SUCCESS, LOAD_CLIENT_BID_SELECTION_FAILURE],
     promise: (client) => client.get(`api/turksystem/user/client/bidselections/?email=${email}`)
+  };
+}
+
+
+// =======================================================
+// =============== SUBMIT CHOSEN DEVELOPERS ==============
+// =======================================================
+
+
+export function submitChosenDeveloper(body) {
+  return {
+    types: [SUBMIT_CHOSEN_DEVELOPER_REQUEST, SUBMIT_CHOSEN_DEVELOPER_SUCCESS, SUBMIT_CHOSEN_DEVELOPER_FAILURE],
+    promise: (client) => client.post('api/turksystem/contract/', {
+      data: body
+    })
   };
 }

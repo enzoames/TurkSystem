@@ -16,7 +16,6 @@ export default class HomePage extends Component {
         <ClientList clients={top_clients}/>
 
         <hr/>
-
         <h1><u>Top Developers</u></h1>
         <DeveloperList developers={top_developers}/>
       </div>

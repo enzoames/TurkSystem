@@ -15,8 +15,9 @@ export default class ChooseBidder extends Component {
   }
 
   componentDidMount(){
-    const bidList = this.props.bid.bidList;
+    let bidList = this.props.bid.bidList;
     let arrayOfDevelopers = [];
+    bidList = bidList.filter( (bid)  => bid.systemdemand.status === "Open");
     bidList.map( (bid) => arrayOfDevelopers.push({devID: bid.developer.id, devName: bid.developer.name, sdID: bid.systemdemand.id, sdName: bid.systemdemand.title, bidPrice: bid.price, chosen: false}) );
     this.setState({developersChosen: arrayOfDevelopers});
   }
@@ -63,22 +64,25 @@ export default class ChooseBidder extends Component {
         isThereErrorFlag = true;
     })
     if(isThereErrorFlag){
-      //this.props.actions.submitChosenDeveloper
-      console.log("SUCCESS", this.state.developersChosen);
+      let chosenDevelopers = this.state.developersChosen;
+      chosenDevelopers = chosenDevelopers.filter( (dev) => dev.chosen == true );
+      this.props.submitChosenDeveloper(chosenDevelopers)
+      console.log("SUCCESS", chosenDevelopers);
       this.setState({didSubmit: true, isThereError: false});
     }
     else{
       this.setState({isThereError: true});
     }
-
   }
 
 
   render() {
     const {bid, systemdemands} = this.props;
+    console.log("\n ChooseBidder STATE: ", this.state);
+    console.log("\n ===> ChooseBidder PROPS: ", this.props);
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
-    const bidList = bid.bidList;
-    const sdList = systemdemands.sdList;
+    const bidList = bid.bidList.filter( (bid) => bid.systemdemand.status === "Open");
+    const sdList = systemdemands.sdList.filter( (sd) => sd.status === "Open");
 
     const RenderBidForEachSD = () => {
       const result = sdList.map( (sd) => {

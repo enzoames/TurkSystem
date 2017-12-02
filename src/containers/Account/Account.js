@@ -7,6 +7,7 @@ import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs } from '../../actions/SystemDemand/actions';
 import { fetchBidSelectionsByClient } from '../../actions/Clients/actions';
 import { updateUserProfile } from '../../actions/Auth/actions';
+import { submitChosenDeveloper } from '../../actions/Clients/actions';
 
 class Account extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, fetchBidSelectionsByClient }, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchBidSelectionsByClient }, dispatch)
 });
 
 const mapStateToProps = (state) => ({

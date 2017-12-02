@@ -42,7 +42,7 @@ export default class PersonalDetails extends Component {
     const { auth } = this.props;
     const user = auth.user;
     // console.log('PersonalDetails STATE: ', this.state);
-    console.log(' === PersonalDetails PROPS: ', this.props);
+    // console.log(' === PersonalDetails PROPS: ', this.props);
 
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
