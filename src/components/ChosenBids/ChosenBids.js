@@ -1,10 +1,5 @@
-
 import React, { Component } from 'react';
-import { RenderSubmitButton } from '../RenderForm/RenderForm';
-import { createValidatorNew } from '../../utils/validation';
-import { hasValue } from '../../utils/utilfunctions';
 import { Link } from 'react-router';
-import { fetchBidSelectionsByClient } from '../../actions/Clients/actions';
 
 export default class ChosenBids extends Component {
   constructor(props) {
@@ -35,7 +30,7 @@ export default class ChosenBids extends Component {
     return (
       <div className="choose-bidder">
         <div className="col-md-12 col-lg-12">
-          <h1 className="bg-primary text-center">Chosen Bids For Your System Demands</h1>
+          <h1 className="bg-primary text-center">Current System Demands in Progress</h1>
             {RenderSelectedBidForEachSD()}
         </div>
       </div>

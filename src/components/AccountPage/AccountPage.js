@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, ChosenBids, DeveloperBids } from 'components';
+import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, ChosenBids, DeveloperBids, RateSDResult } from 'components';
 import { hasValue } from '../../utils/utilfunctions';
 import { Link } from 'react-router';
 
@@ -88,6 +88,10 @@ export default class AccountPage extends Component {
 
             {user.credential === "client" &&
               (<ChosenBids selectedBids={this.props.selectedBids}/>)
+            }
+
+            {user.credential === "client" &&
+              (<RateSDResult result={this.props.sdresults} />)
             }
 
           </div>

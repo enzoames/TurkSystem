@@ -1,9 +1,8 @@
 import { LOAD_CLIENTS_REQUEST, LOAD_CLIENTS_SUCCESS, LOAD_CLIENTS_FAILURE,
-         LOAD_CLIENT_BID_SELECTION_REQUEST , LOAD_CLIENT_BID_SELECTION_SUCCESS,
-         LOAD_CLIENT_BID_SELECTION_FAILURE,
-
-         SUBMIT_CHOSEN_DEVELOPER_REQUEST, SUBMIT_CHOSEN_DEVELOPER_SUCCESS,
-         SUBMIT_CHOSEN_DEVELOPER_FAILURE } from '../../redux/modules/constants';
+  LOAD_CLIENT_BID_SELECTION_REQUEST , LOAD_CLIENT_BID_SELECTION_SUCCESS, LOAD_CLIENT_BID_SELECTION_FAILURE,
+  SUBMIT_CHOSEN_DEVELOPER_REQUEST, SUBMIT_CHOSEN_DEVELOPER_SUCCESS, SUBMIT_CHOSEN_DEVELOPER_FAILURE, 
+  LOAD_SD_RESULTS_REQUEST, LOAD_SD_RESULTS_SUCCESS, LOAD_SD_RESULTS_FAILURE
+} from '../../redux/modules/constants';
 
 // ==============================================
 // =============== GET ALL CLIENTS ==============
@@ -42,3 +41,25 @@ export function submitChosenDeveloper(body) {
     })
   };
 }
+
+// ==============================================
+// =============== FETCH SD RESULT ==============
+// ==============================================
+
+
+export function fetchSDResults(email) {
+  return {
+    types: [LOAD_SD_RESULTS_REQUEST, LOAD_SD_RESULTS_SUCCESS, LOAD_SD_RESULTS_FAILURE],
+    promise: (client) => client.get(`api/turksystem/client/sdresults/?email=${email}`)
+  };
+}
+
+
+
+
+
+
+
+
+
+

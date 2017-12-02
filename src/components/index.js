@@ -24,3 +24,5 @@ export BidForm from './BidForm/BidForm'
 export ChooseBidder from './ChooseBidder/ChooseBidder'
 export ChosenBids from './ChosenBids/ChosenBids'
 export DeveloperBids from './DeveloperBids/DeveloperBids'
+
+export RateSDResult from './RateSDResult/RateSDResult'
