@@ -17,8 +17,6 @@ export Developer from './Developer/Developer'
 export ClientList from './ClientList/ClientList'
 export Client from './Client/Client'
 export TurkUserProfile from './TurkUserProfile/TurkUserProfile';
-export ClientProfile from './ClientProfile/ClientProfile';
-export DeveloperProfile from './DeveloperProfile/DeveloperProfile';
 export PersonalDetails from './PersonalDetails/PersonalDetails';
 export SDProfile from './SDProfile/SDProfile';
 export BidItem from './BidItem/BidItem'
@@ -26,4 +24,3 @@ export BidForm from './BidForm/BidForm'
 export ChooseBidder from './ChooseBidder/ChooseBidder'
 export ChosenBids from './ChosenBids/ChosenBids'
 export DeveloperBids from './DeveloperBids/DeveloperBids'
-

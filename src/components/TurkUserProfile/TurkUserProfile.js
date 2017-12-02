@@ -101,23 +101,11 @@ export default class TurkUserProfile extends Component {
 
       );
     }
-<<<<<<< Updated upstream
-
 
     return (
       <div className="turkuser">
         {user.credential === 'client' && renderClientTemplate()}
         {user.credential === 'developer' && renderDeveloperTemplate()}
-=======
-    */
-    return (
-      <div>
-        <h1 className="text-center">Profile</h1>
-        { turkuser.isLoaded ?
-            ( turkuser.details.credentials === "client" ?
-              <> : )
-            : <div>Loading . . .</div> }
->>>>>>> Stashed changes
       </div>
     );
   }
