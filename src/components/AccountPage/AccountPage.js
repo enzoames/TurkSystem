@@ -77,7 +77,7 @@ export default class AccountPage extends Component {
             }
 
             {user.credential === "client" && 
-              (<ChooseBidder bid={bid} systemdemands={systemdemands}/>)
+              (<ChooseBidder bid={bid} systemdemands={systemdemands} {...this.props.actions} />)
             }
 
           </div>

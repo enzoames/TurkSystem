@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs } from '../../actions/SystemDemand/actions';
 import { updateUserProfile } from '../../actions/Auth/actions';
+import { submitChosenDeveloper } from '../../actions/Clients/actions';
 
 class Account extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile}, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper}, dispatch)
 });
 
 const mapStateToProps = (state) => ({
