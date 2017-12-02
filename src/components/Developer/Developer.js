@@ -9,8 +9,7 @@ export default class Developer extends Component {
   }
 
   render() {
-    console.log("PROPS IN Client", this.props);
-    const {id, name, lastname, rating} = this.props
+    const {id, name, bio, lastname, rating} = this.props
     return (
       <div className="developer col-sm-12 col-md-12 col-lg-12">
         <div className="panel panel-default">
@@ -22,7 +21,7 @@ export default class Developer extends Component {
           </div>
 
           <div className="panel-body">
-            <span>quick bio goes here</span>
+            <span>{bio}</span>
           </div>
 
           <ul className="list-group">

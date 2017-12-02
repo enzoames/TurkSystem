@@ -4,6 +4,7 @@ import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE,
   LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE,
   LOAD_TURKUSER_REQUEST, LOAD_TURKUSER_SUCCESS, LOAD_TURKUSER_FAILURE,
   UPDATE_USER_PROFILE_REQUEST, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILURE,
+  DEPOSIT_MONEY_REQUEST, DEPOSIT_MONEY_SUCCESS, DEPOSIT_MONEY_FAILURE,
   BID_RESET, CLIENT_SDS_RESET
 } from '../../redux/modules/constants';
 
@@ -87,7 +88,28 @@ export function updateUserProfile(body){
 }
 
 
-// RESET STATE
+// ===========================================
+// =============== MONEY DEPOST ==============
+// ===========================================
+
+export function depositMoney(body){
+  return{
+    types: [DEPOSIT_MONEY_REQUEST, DEPOSIT_MONEY_SUCCESS, DEPOSIT_MONEY_FAILURE],
+    promise: (client) => client.post('api/turksystem/deposite/', {
+      data: body
+    })
+  }
+}
+
+
+
+
+
+// ==========================================
+// ==========================================
+// =============== RESET STATE ==============
+// ==========================================
+// ==========================================
 
 export function resetBid(){
   return{

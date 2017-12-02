@@ -17,7 +17,9 @@ class TurkUser extends Component {
   render() {
     return (
       <div className="container turkuser">
-        <TurkUserProfile turkuser={this.props.turkuser}/>
+        {this.props.turkuser.isLoaded ?
+          (<TurkUserProfile turkuser={this.props.turkuser}/>) : (<div>Loading . . .</div>)
+        }
       </div>);
   }
 }

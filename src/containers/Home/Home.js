@@ -33,9 +33,6 @@ class Home extends Component {
   render() {
     const { auth } = this.props;
     const styles = require('./Home.scss');
-
-    console.log("PROPS in Home: ", this.props);
-
     let top_clients    = this.get_top_k(this.props.clients.clientList, 2);
     let top_developers = this.get_top_k(this.props.developers.developerList, 2);
 

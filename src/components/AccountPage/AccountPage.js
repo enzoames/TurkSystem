@@ -18,8 +18,14 @@ export default class AccountPage extends Component {
       <div className="accountpage">
         {hasValue(user) &&
         <div>
-          {user.credential === "superuser" ?
-            (<h1 className="bg-primary text-center">SUPERUSER ACCOUNT</h1>) : (<h1 className="bg-primary text-center">Account</h1>)
+          {user.credential === "superuser" &&
+            (<h1 className="bg-primary text-center">SUPERUSER ACCOUNT</h1>)
+          }
+          {user.credential === "client" &&
+            (<h1 className="bg-primary text-center">Client Account</h1>)
+          }
+          {user.credential === "developer" &&
+            (<h1 className="bg-primary text-center">Developer Account</h1>)
           }
 
           <div className="container">
@@ -61,7 +67,7 @@ export default class AccountPage extends Component {
               <h1 className="bg-primary text-center">Deposit Money</h1>
               <h4>Current Balance: ${user.money}</h4>
               {user.pending ? (<h4>Account must be accepted before depositing money</h4>) :
-                (<MoneyDeposit auth={this.props.auth} />)
+                (<MoneyDeposit auth={this.props.auth} {...this.props.actions} />)
               }
             </div>
 
@@ -72,7 +78,7 @@ export default class AccountPage extends Component {
             {user.credential === "client" &&
               <div className="col-md-12 col-lg-12">
                 <h1 className="bg-primary text-center">Client Option</h1>
-                {user.accepted ? (<PostSystemDemand auth={this.props.auth} />) : (renderNotAcceptedMessage)}
+                {user.accepted ? (<PostSystemDemand auth={this.props.auth} {...this.props.actions} />) : (renderNotAcceptedMessage)}
               </div>
             }
 

@@ -1,7 +1,8 @@
 import { LOAD_SD_LIST_REQUEST, LOAD_SD_LIST_SUCCESS, LOAD_SD_LIST_FAILURE,
 	LOAD_SD_REQUEST, LOAD_SD_SUCCESS, LOAD_SD_FAILURE,
 	LOAD_BID_REQUEST, LOAD_BID_SUCCESS, LOAD_BID_FAILURE,
-  LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE
+  LOAD_CLIENT_SDS_REQUEST, LOAD_CLIENT_SDS_SUCCESS, LOAD_CLIENT_SDS_FAILURE,
+  POST_SD_REQUEST, POST_SD_SUCCESS, POST_SD_FAILURE
 } from '../../redux/modules/constants';
 
 // ============================================================
@@ -58,3 +59,21 @@ export function fetchBidByEmail(email) {
     promise: (client) => client.get(`api/turksystem/bid/email/?email=${email}`)
   };
 }
+
+
+// =================================================
+// =============== POST SYSTEM DEMAND ==============
+// =================================================
+
+export function postSystemDemand(body){
+  return{
+    types: [POST_SD_REQUEST, POST_SD_SUCCESS, POST_SD_FAILURE],
+    promise: (client) => client.post('api/turksystem/sysdemand/', {
+      data: body
+    })
+  }
+}
+
+
+
+

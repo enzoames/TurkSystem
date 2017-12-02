@@ -4,10 +4,16 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AccountPage } from 'components';
+<<<<<<< HEAD
 import { fetchBidByEmail, fetchClientSDs } from '../../actions/SystemDemand/actions';
 import { fetchBidSelectionsByClient } from '../../actions/Clients/actions';
 import { updateUserProfile } from '../../actions/Auth/actions';
 import { submitChosenDeveloper } from '../../actions/Clients/actions';
+=======
+import { fetchBidByEmail, fetchClientSDs, postSystemDemand } from '../../actions/SystemDemand/actions';
+import { fetchBidSelectionsByClient, submitChosenDeveloper } from '../../actions/Clients/actions';
+import { updateUserProfile, depositMoney } from '../../actions/Auth/actions';
+>>>>>>> upstream/master
 
 class Account extends Component {
   constructor(props) {
@@ -65,7 +71,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchBidSelectionsByClient }, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchBidSelectionsByClient, depositMoney, postSystemDemand }, dispatch)
 });
 
 const mapStateToProps = (state) => ({

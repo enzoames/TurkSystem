@@ -36,10 +36,11 @@ export default class MoneyDeposit extends Component {
     const isThereError = this.checkErrorInValidation(fields);
     if (!isThereError) {
       const result = {
-        'money': this.state.money
+        'user': this.props.auth.user.email,
+        'amount': this.state.money
       };
       console.log('RESULT', result);
-      //this.props.login(result);
+      this.props.depositMoney(result);
       this.setState({sentflag: true})
       console.log('\n\nSuccess!!!');
     }
@@ -72,7 +73,7 @@ export default class MoneyDeposit extends Component {
     const renderSuccessMessage = () => {
       return(
         <div>
-          <h4>Your Money has been deposited. Changes to your account can take up to 24hrs, Thank you</h4>
+          <h4>Your Money has been deposited. Changes to your account will be updated on your next login, Thank you</h4>
           <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleNewDeposit} label="Make Another Deposit"/>
         </div>
       );

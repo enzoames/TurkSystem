@@ -9,7 +9,7 @@ export default class Client extends Component {
   }
 
   render() {
-    const {id, name, lastname, rating} = this.props
+    const {id, name, lastname, bio, rating} = this.props
     return (
       <div className="client col-sm-12 col-md-12 col-lg-12">
         <div className="panel panel-default">
@@ -21,7 +21,7 @@ export default class Client extends Component {
           </div>
 
           <div className="panel-body">
-            <span>quick bio goes here</span>
+            <span>{bio}</span>
           </div>
 
           <ul className="list-group">

@@ -125,11 +125,15 @@ export default class App extends Component {
           {this.props.children}
         </div>
 
-        {/*
-        <div className="well text-center">
-          FOOTER
+        
+        <div className="col-md-12 well text-center">
+          <h3>The City College of New York - CUNY</h3>
+          <h3>CSs 332 Software Engineering</h3>
+          <h3>Project developed by:</h3>
+          <h4>Enzo Ames</h4>
+          <h4>Rohan Swaby</h4>
         </div>
-        */}
+        
 
 
       </div>
