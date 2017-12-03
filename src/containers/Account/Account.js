@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs, postSystemDemand } from '../../actions/SystemDemand/actions';
-import { fetchBidSelectionsByClient, submitChosenDeveloper, fetchSDResults } from '../../actions/Clients/actions';
+import { fetchSelectedBids, submitChosenDeveloper, fetchSDResults } from '../../actions/Clients/actions';
 import { updateUserProfile, depositMoney } from '../../actions/Auth/actions';
 
 class Account extends Component {
@@ -17,9 +17,9 @@ class Account extends Component {
     if(this.props.auth.isLoaded){
       if (this.props.auth.user.credential !== 'superuser'){
         this.props.actions.fetchBidByEmail(this.props.auth.user.email);
+        //this.props.actions.fetchSelectedBids(this.props.auth.user.email, this.props.auth.user.credential);
         if (this.props.auth.user.credential === 'client'){
           this.props.actions.fetchClientSDs(this.props.auth.user.email);
-          //this.props.actions.fetchBidSelectionsByClient(this.props.auth.user.email);
           //this.props.actions.fetchSDResults(this.props.auth.user.email);
         }
       }
@@ -66,7 +66,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchBidSelectionsByClient, depositMoney, postSystemDemand, fetchSDResults }, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults }, dispatch)
 });
 
 const mapStateToProps = (state) => ({

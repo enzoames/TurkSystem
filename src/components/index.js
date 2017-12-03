@@ -12,17 +12,18 @@ export PostSystemDemand from './PostSystemDemand/PostSystemDemand';
 export MoneyDeposit from './MoneyDeposit/MoneyDeposit';
 export SystemDemandList from './SystemDemandList/SystemDemandList';
 export SystemDemandItem from './SystemDemandItem/SystemDemandItem';
-export DeveloperList from './DeveloperList/DeveloperList'
-export Developer from './Developer/Developer'
+export DeveloperList from './DeveloperList/DeveloperList';
+export Developer from './Developer/Developer';
 export ClientList from './ClientList/ClientList'
-export Client from './Client/Client'
+export Client from './Client/Client';
 export TurkUserProfile from './TurkUserProfile/TurkUserProfile';
 export PersonalDetails from './PersonalDetails/PersonalDetails';
 export SDProfile from './SDProfile/SDProfile';
-export BidItem from './BidItem/BidItem'
-export BidForm from './BidForm/BidForm'
-export ChooseBidder from './ChooseBidder/ChooseBidder'
-export ChosenBids from './ChosenBids/ChosenBids'
-export DeveloperBids from './DeveloperBids/DeveloperBids'
+export BidItem from './BidItem/BidItem';
+export BidForm from './BidForm/BidForm';
+export ChooseBidder from './ChooseBidder/ChooseBidder';
+export ChosenBids from './ChosenBids/ChosenBids';
+export DeveloperBids from './DeveloperBids/DeveloperBids';
 
-export RateSDResult from './RateSDResult/RateSDResult'
+export RateSDResult from './RateSDResult/RateSDResult';
+export BidResult from './BidResult/BidResult';

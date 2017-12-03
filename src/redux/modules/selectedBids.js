@@ -1,31 +1,38 @@
-import { LOAD_CLIENT_BID_SELECTION_REQUEST, LOAD_CLIENT_BID_SELECTION_SUCCESS, LOAD_CLIENT_BID_SELECTION_FAILURE} from './constants';
+import { LOAD_SELECTED_BIDS_REQUEST, LOAD_SELECTED_BIDS_SUCCESS, LOAD_SELECTED_BIDS_FAILURE, SELECTED_BID_RESET} from './constants';
 
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  selectedBidsList: []
+  selectedList: []
 };
 
 export default function selectedBids(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_CLIENT_BID_SELECTION_REQUEST:
-      console.log('\nLOAD_CLIENT_BID_SELECTION_REQUEST', action);
+    case LOAD_SELECTED_BIDS_REQUEST:
+      console.log('\nLOAD_SELECTED_BIDS_REQUEST', action);
       return Object.assign({}, state, {
         isFetching: true
       });
-    case LOAD_CLIENT_BID_SELECTION_SUCCESS:
-      console.log('\nLOAD_CLIENT_BID_SELECTION_SUCCESS', action);
+    case LOAD_SELECTED_BIDS_SUCCESS:
+      console.log('\nLOAD_SELECTED_BIDS_SUCCESS', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
         sd: action.result
       });
-    case LOAD_CLIENT_BID_SELECTION_FAILURE:
-      console.log('\nLOAD_CLIENT_BID_SELECTION_FAILURE', action);
+    case LOAD_SELECTED_BIDS_FAILURE:
+      console.log('\nLOAD_SELECTED_BIDS_FAILURE', action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
         error: action.error
+      });
+    case SELECTED_BID_RESET:
+      console.log('\nSELECTED_BID_RESET', action);
+      return Object.assign({}, state, {
+        isFetching: false,
+        isLoaded: false,
+        selectedList: []
       });
     default:
       return state;

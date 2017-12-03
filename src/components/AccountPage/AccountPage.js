@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, ChosenBids, DeveloperBids, RateSDResult } from 'components';
+import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, 
+  ChosenBids, DeveloperBids, RateSDResult, BidResult } from 'components';
 import { hasValue } from '../../utils/utilfunctions';
 import { Link } from 'react-router';
 
@@ -22,10 +23,10 @@ export default class AccountPage extends Component {
             (<h1 className="bg-primary text-center">SUPERUSER ACCOUNT</h1>)
           }
           {user.credential === "client" &&
-            (<h1 className="bg-primary text-center">Client Account</h1>)
+            (<h1 className="bg-primary text-center">Client Account: {user.name} {user.lastname}</h1>)
           }
           {user.credential === "developer" &&
-            (<h1 className="bg-primary text-center">Developer Account</h1>)
+            (<h1 className="bg-primary text-center">Developer Account: {user.name} {user.lastname}</h1>)
           }
 
           <div className="container">
@@ -72,31 +73,29 @@ export default class AccountPage extends Component {
             </div>
 
             {user.credential === "developer" &&
-              <DeveloperBids auth={auth} bid={bid}/>
-            }
-
-            {user.credential === "client" &&
-              <div className="col-md-12 col-lg-12">
-                <h1 className="bg-primary text-center">Client Option</h1>
-                {user.accepted ? (<PostSystemDemand auth={this.props.auth} {...this.props.actions} />) : (renderNotAcceptedMessage)}
+              <div>
+                <DeveloperBids auth={auth} bid={bid}/>
+                <ChosenBids auth={auth} selectedBids={this.props.selectedBids}/>
+                <BidResult {...this.props.actions} />
               </div>
             }
 
             {user.credential === "client" &&
-              (<ChooseBidder bid={bid} systemdemands={systemdemands} {...this.props.actions} />)
-            }
-
-            {user.credential === "client" &&
-              (<ChosenBids selectedBids={this.props.selectedBids}/>)
-            }
-
-            {user.credential === "client" &&
-              (<RateSDResult result={this.props.sdresults} />)
+              <div>
+                <div className="col-md-12 col-lg-12">
+                  <h1 className="bg-primary text-center">Client Option</h1>
+                  {user.accepted ? (<PostSystemDemand auth={this.props.auth} {...this.props.actions} />) : (renderNotAcceptedMessage)}
+                </div>
+                <ChooseBidder bid={bid} systemdemands={systemdemands} {...this.props.actions} />
+                <ChosenBids auth={auth} selectedBids={this.props.selectedBids}/>     
+                <RateSDResult result={this.props.sdresults} />
+              </div>
             }
 
           </div>
         </div>
         }
+
       </div>
     );
   }

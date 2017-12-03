@@ -7,16 +7,17 @@ export default class ChosenBids extends Component {
   }
 
   render() {
-    console.log("PROPS in ChosenBids:", this.props)
+    //console.log("PROPS in ChosenBids:", this.props)
     const { selectedBids } = this.props;
 
     const RenderSelectedBidForEachSD = () => {
       if (selectedBids.isLoaded){
-        let selectedBidsList = selectedBids.selectedBidsList;
-        const result = selectedBidList.map( (bid) => {
+        let selectedList = selectedBids.selectedList;
+        const result = selectedList.map( (bid) => {
           return(
             <div className="col-md-4 panel panel-default">
-              <h4>{bid.sdName}: {bid.devName} {bid.bidAmount}</h4>
+              <h4>system demand information here</h4>
+              {/*<h4>{bid.sdName}: {bid.devName}, ${bid.bidAmount}</h4>*/}
             </div>
           )
         })

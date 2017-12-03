@@ -11,13 +11,17 @@ export default class DeveloperBids extends Component {
 
     const renderOpenBids = () => {
       const bids = this.props.bid.bidList;
-      const openBids = bids.map( (bid) => <div className="col-md-4 panel panel-default">
+      const openBids = bids.map( (bid) => {
+        const divContainer = <div className="col-md-4 panel panel-default">
           <h4 className="text-center">{bid.systemdemand.title}</h4>
           <h4>Reward: ${bid.systemdemand.reward}</h4>
           <h4>Bidding Price: ${bid.price}</h4>
           <h4>System Demand status: {bid.systemdemand.status}</h4>
-        </div>)
+        </div>;
 
+        const result = bid.systemdemand.status === 'Open' ? divContainer : '';
+        return(result)
+      })
       return(
         <div className="col-md-12">
           <h4>Open Bids</h4>
@@ -29,7 +33,7 @@ export default class DeveloperBids extends Component {
     return (
       <div className="developer-bids">
         <div className="col-md-12 col-lg-12">
-            <h1 className="bg-primary text-center">Developer Option</h1>
+            <h1 className="bg-primary text-center">Current Open Bids</h1>
 
             {auth.user.accepted ? 
               (<div>

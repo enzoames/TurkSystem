@@ -92,9 +92,6 @@ export default class PostSystemDemand extends Component {
   }
 
   render() {
-    console.log('POSTSYSTEMDEMAND STATE: ', this.state);
-    console.log('POSTSYSTEMDEMAND PROPS: ', this.props);
-
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';

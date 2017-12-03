@@ -75,15 +75,19 @@ export default class BidForm extends Component {
 
     return (
       <div className="bidform">
-      {!this.state.alreadyBidded ?
+      {this.props.sdStatus === 'Open' ?
         (<div>
-          {this.state.isBidded ? (<h4 className="text-success">Your bid has been completed, it will show in the system in a few moments</h4>):
-            (<div>
-              <RenderInput label="Bid Amount $" value={this.state.bid.value} name="bid" placeholder="" error={this.state.errorObject.bid.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-              <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Bid" />
-            </div>)
-          }  
-        </div>) : (<h4>You already bidded for this system demand</h4>)
+        {!this.state.alreadyBidded ?
+          (<div>
+            {this.state.isBidded ? (<h4 className="text-success">Your bid has been completed, it will show in the system in a few moments</h4>):
+              (<div>
+                <RenderInput label="Bid Amount $" value={this.state.bid.value} name="bid" placeholder="" error={this.state.errorObject.bid.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+                <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={this.handleSubmit} label="Bid" />
+              </div>)
+            }  
+          </div>) : (<h4>You already bidded for this system demand</h4>)
+        }
+        </div>) : (<h4 className="text-danger">System Demand is closed, can not bid</h4>)
       }
       </div>
     );

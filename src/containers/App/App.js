@@ -15,7 +15,7 @@ import { isLoaded as isAuthLoaded } from 'redux/modules/auth';
 import { load as loadAuth, logout } from '../../actions/Auth/actions';
 
 //RESET ACTIONS
-import { resetBid, resetClientSDs } from '../../actions/Auth/actions';
+import { resetBid, resetClientSDs, resetSelectedBid } from '../../actions/Auth/actions';
 
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
@@ -30,7 +30,7 @@ import { resetBid, resetClientSDs } from '../../actions/Auth/actions';
   state => ({
     user: state.auth.user
   }),
-  { logout, resetBid, resetClientSDs, pushState: push })
+  { logout, resetBid, resetClientSDs, resetSelectedBid, pushState: push })
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
@@ -38,6 +38,7 @@ export default class App extends Component {
     logout: PropTypes.func.isRequired,
     resetBid: PropTypes.func.isRequired,
     resetClientSDs: PropTypes.func.isRequired,
+    resetSelectedBid: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired
   };
 
@@ -61,6 +62,7 @@ export default class App extends Component {
     event.preventDefault();
     this.props.resetBid();
     this.props.resetClientSDs();
+    this.props.resetSelectedBid();
     this.props.logout();
   };
 

@@ -1,5 +1,5 @@
 import { LOAD_CLIENTS_REQUEST, LOAD_CLIENTS_SUCCESS, LOAD_CLIENTS_FAILURE,
-  LOAD_CLIENT_BID_SELECTION_REQUEST , LOAD_CLIENT_BID_SELECTION_SUCCESS, LOAD_CLIENT_BID_SELECTION_FAILURE,
+  LOAD_SELECTED_BIDS_REQUEST , LOAD_SELECTED_BIDS_SUCCESS, LOAD_SELECTED_BIDS_FAILURE,
   SUBMIT_CHOSEN_DEVELOPER_REQUEST, SUBMIT_CHOSEN_DEVELOPER_SUCCESS, SUBMIT_CHOSEN_DEVELOPER_FAILURE, 
   LOAD_SD_RESULTS_REQUEST, LOAD_SD_RESULTS_SUCCESS, LOAD_SD_RESULTS_FAILURE
 } from '../../redux/modules/constants';
@@ -17,13 +17,13 @@ export function fetchClients() {
 
 
 // =============================================
-// ======== GET ALL BIDS SELECTED BY CLIENT ====
+// ======== GET ALL BIDS SELECTED BY EMAIL ====
 // =============================================
 
-export function fetchBidSelectionsByClient(email) {
+export function fetchSelectedBids(email, credential) {
   return {
-    types: [LOAD_CLIENT_BID_SELECTION_REQUEST , LOAD_CLIENT_BID_SELECTION_SUCCESS, LOAD_CLIENT_BID_SELECTION_FAILURE],
-    promise: (client) => client.get(`api/turksystem/user/client/bidselections/?email=${email}`)
+    types: [LOAD_SELECTED_BIDS_REQUEST , LOAD_SELECTED_BIDS_SUCCESS, LOAD_SELECTED_BIDS_FAILURE],
+    promise: (client) => client.get(`api/turksystem/bidselections/?email=${email}&credential=${credential}`)
   };
 }
 
@@ -50,7 +50,7 @@ export function submitChosenDeveloper(body) {
 export function fetchSDResults(email) {
   return {
     types: [LOAD_SD_RESULTS_REQUEST, LOAD_SD_RESULTS_SUCCESS, LOAD_SD_RESULTS_FAILURE],
-    promise: (client) => client.get(`api/turksystem/client/sdresults/?email=${email}`)
+    promise: (client) => client.get(`api/turksystem/sdresults/?email=${email}`)
   };
 }
 

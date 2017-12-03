@@ -9,7 +9,6 @@ export default class SDProfile extends Component {
 
   render() {
     const {systemdemand, bid, user} = this.props;
-    //console.log(" === PROPS IN SDProfile:", this.props);
     const sd = systemdemand.sd;
     const client = systemdemand.sd.client;
     const bidList = bid.bidList
@@ -26,7 +25,7 @@ export default class SDProfile extends Component {
 
         <div className="jumbotron">
           <h1 className="text-center">{sd.title}</h1>
-          <span className="text-center text-danger"><strong>Status: {sd.status}</strong></span>
+          <span className={"text-center " + (sd.status === "Open" ? "text-success" : "text-danger") }><strong>Status: {sd.status}</strong></span> 
         </div>
 
         <div className="col-md-12 panel panel-default">
@@ -72,7 +71,7 @@ export default class SDProfile extends Component {
           (user.user.credential === "developer" ? 
             (<div className="col-md-4">
               <h4 className="text-center"><u>Place a Bid for {sd.title}</u></h4>
-              <BidForm sdID={sd.id} userEmail={user.user.email} bid={this.props.bid} {...this.props.actions} />
+              <BidForm sdID={sd.id} sdStatus={sd.status} userEmail={user.user.email} bid={this.props.bid} {...this.props.actions} />
             </div>):(<span></span>) ) : (<h4>Want to start bidding please <Link to="/register">Register Now</Link></h4>)
         }
         
