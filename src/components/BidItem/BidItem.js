@@ -14,7 +14,7 @@ export default class BidItem extends Component {
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <Link to={`/developers/${devID}`}>
+            <Link to={`/developers/profile/${devID}`}>
               <h4 className="panel-title text-center">{dev}</h4>
             </Link>
           </div>
@@ -22,7 +22,7 @@ export default class BidItem extends Component {
           <div className="panel-body">
             <h4 className="text-center">{sd}</h4>
             <h4>Bid Amount: ${bidAmount}</h4>
-            {isChosen ? (<h4>Chosen!</h4>) : (<h4>Not Chosen</h4>) }
+            {isChosen ? (<h4 className="text-success">Chosen!</h4>) : (<h4 className="text-danger">Not Chosen</h4>) }
           </div>
 
           <ul className="list-group">

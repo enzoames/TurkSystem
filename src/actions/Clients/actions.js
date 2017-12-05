@@ -23,7 +23,7 @@ export function fetchClients() {
 export function fetchSelectedBids(email, credential) {
   return {
     types: [LOAD_SELECTED_BIDS_REQUEST , LOAD_SELECTED_BIDS_SUCCESS, LOAD_SELECTED_BIDS_FAILURE],
-    promise: (client) => client.get(`api/turksystem/bidselections/?email=${email}&credential=${credential}`)
+    promise: (client) => client.get(`api/turksystem/chosensds/?email=${email}&credential=${credential}`)
   };
 }
 

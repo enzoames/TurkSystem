@@ -7,6 +7,7 @@ import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs, postSystemDemand } from '../../actions/SystemDemand/actions';
 import { fetchSelectedBids, submitChosenDeveloper, fetchSDResults } from '../../actions/Clients/actions';
 import { updateUserProfile, depositMoney } from '../../actions/Auth/actions';
+import { postSDResult } from '../../actions/Developers/actions';
 
 class Account extends Component {
   constructor(props) {
@@ -14,10 +15,10 @@ class Account extends Component {
   }
 
   componentWillMount(){
-    if(this.props.auth.isLoaded){
+    if(this.props.auth.isLoaded){ //THIS ACTION RUN EVERY TIME THE COMPONENT IS MOUNTED, IF NOT LOADED RUN THE ACTION ELSE IT HAS BEEN LOADED
       if (this.props.auth.user.credential !== 'superuser'){
         this.props.actions.fetchBidByEmail(this.props.auth.user.email);
-        //this.props.actions.fetchSelectedBids(this.props.auth.user.email, this.props.auth.user.credential);
+        this.props.actions.fetchSelectedBids(this.props.auth.user.email, this.props.auth.user.credential);
         if (this.props.auth.user.credential === 'client'){
           this.props.actions.fetchClientSDs(this.props.auth.user.email);
           //this.props.actions.fetchSDResults(this.props.auth.user.email);
@@ -32,21 +33,21 @@ class Account extends Component {
         const credential = auth.user.credential;
         switch (credential) {
           case 'client':
-            if(this.props.bid.isLoaded && this.props.clientSDs.isLoaded){
-              console.log(" ==== CLIENT DID LOG IN");
+            if(this.props.bid.isLoaded && this.props.clientSDs.isLoaded && this.props.selectedBids.isLoaded){
+              console.log(" \n\n==== CLIENT DID LOG IN");
               return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} {...this.props} />);
             }
             else
               return(<span>Loading . . . </span>);
           case 'developer':
-            if(this.props.bid.isLoaded){
-              console.log(" ==== DEVELOPER DID LOG IN");
+            if(this.props.bid.isLoaded && this.props.selectedBids.isLoaded){
+              console.log(" \n\n==== DEVELOPER DID LOG IN");
               return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} {...this.props} />)
             }
             else
               return(<span>Loading . . . </span>);
           case 'superuser':
-            console.log(" ==== SUPERUSER LOG IN");
+            console.log(" \n\n==== SUPERUSER LOG IN");
             return(<AccountPage auth={this.props.auth} bid={this.props.bid} systemdemands={this.props.clientSDs} {...this.props}/>)
           default:
             return(<span>Loading . . . </span>);
@@ -66,7 +67,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults }, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults, postSDResult }, dispatch)
 });
 
 const mapStateToProps = (state) => ({

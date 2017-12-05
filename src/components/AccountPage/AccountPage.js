@@ -11,7 +11,7 @@ export default class AccountPage extends Component {
 
   render() {
     const { auth, bid, systemdemands } = this.props;
-    console.log(" === PROPS IN ACCOUNT PAGE", this.props);
+    console.log(" =====> PROPS IN ACCOUNT PAGE", this.props);
     const user = auth.isLoaded ? auth.user : null;
     const renderNotAcceptedMessage = <h4>Your account must be accepted before any options are available</h4>;
 
@@ -76,7 +76,7 @@ export default class AccountPage extends Component {
               <div>
                 <DeveloperBids auth={auth} bid={bid}/>
                 <ChosenBids auth={auth} selectedBids={this.props.selectedBids}/>
-                <BidResult {...this.props.actions} />
+                <BidResult auth={auth} selectedBids={this.props.selectedBids} {...this.props.actions} />
               </div>
             }
 

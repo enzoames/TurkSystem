@@ -18,7 +18,7 @@ export default function selectedBids(state = initialState, action = {}) {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        sd: action.result
+        selectedList: action.result
       });
     case LOAD_SELECTED_BIDS_FAILURE:
       console.log('\nLOAD_SELECTED_BIDS_FAILURE', action);
