@@ -123,7 +123,7 @@ export default class RateSDResult extends Component {
                     <span>{item.result}</span>
                   </div>
                   <RenderInputNumber label="Rate developer's performace 1 - 5" value={this.state.rate} name="rate" min={"1"} max={"5"} placeholder={""} error={this.state.errorObject.rate.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-                  <RenderTextBox label="Evaluation Note *" value={this.state.note} name="note" placeholder="detailed evaluation note" rows={3} error={this.state.errorObject.note.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+                  <RenderTextBox label="Evaluation Note *" value={this.state.note} name="note" placeholder="detailed evaluation note and explain why you chose this developer" rows={3} error={this.state.errorObject.note.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
                   <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id)} label="Submit" />
                 </div>
                 }

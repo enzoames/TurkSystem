@@ -95,6 +95,11 @@ export default class TurkUserProfile extends Component {
               <h4>{user.recent_work}</h4>
             </blockquote>
 
+            <h3 className="text-primary">Completed Projects</h3>
+            <blockquote className="blockquote">
+              <h4>{user.completed_projects}</h4>
+            </blockquote>
+
           </div>
 
         </div>
