@@ -50,7 +50,7 @@ export default class BidResult extends Component {
         "devID": this.props.auth.user.id
       }
       console.log("DATA", data); 
-      //this.props.postSDResult(data)
+      this.props.postSDResult(data)
       this.setState({errorObject: this.state.NullErrorContainer, result: ""})
     }
   }
@@ -82,18 +82,22 @@ export default class BidResult extends Component {
       const result = jobList.map( (item) => {
         const sdFlags = this.state.sdFlag;
         const currentStatus = sdFlags.filter( (sd) => sd.sdid === item.sysdemand.id );
-        const formField = <div className="col-md-12 panel panel-default">
-          <h4 className="text-center text-primary" onClick={ (e) => this.handleToggleForm(e, item.sysdemand.id)}>{item.sysdemand.title}</h4>
-
-          {currentStatus[0].open &&
-          <div>
-            <div className="text-danger"><strong>Deadline:</strong> {item.sysdemand.deadline}</div>
-            <RenderTextBox label="Result *" value={this.state.result} name="result" placeholder="detailed result for this system demand" rows={3} error={this.state.errorObject.result.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-            <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={ (e)=>this.handleSubmit(e, item.sysdemand.id)} label="Submit" />
+        const formField = <div>
+          {!item.is_completed &&
+          <div className="col-md-12 panel panel-default">
+            <h4 className="text-center text-primary" onClick={ (e) => this.handleToggleForm(e, item.sysdemand.id)}>{item.sysdemand.title}</h4>
+            <div>
+              {currentStatus[0].open &&
+              <div>
+                <div className="text-danger"><strong>Deadline:</strong> {item.sysdemand.deadline}</div>
+                <RenderTextBox label="Result *" value={this.state.result} name="result" placeholder="detailed result for this system demand" rows={3} error={this.state.errorObject.result.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
+                <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={ (e)=>this.handleSubmit(e, item.sysdemand.id)} label="Submit" />
+              </div>
+              }
+            </div>
           </div>
           }
-
-        </div>
+        </div>;
 
         return(formField);
       })
@@ -109,8 +113,8 @@ export default class BidResult extends Component {
           
           {this.state.sdFlag.length > 0 ?
             (<div>
-              <h4>Click on one of the following System Demands and submit your result within the given deadline</h4>
-              <h4 className="text-danger">Please submit results only once</h4>
+              <h4><strong>If available - </strong> Click on one of the following System Demands and submit your result within the given deadline</h4>
+              <h4 className="text-danger"> Please click the submit only once</h4>
               {renderResultFormForEachSD()}
             </div>):(<h4>No open System Demands available</h4>)
           }

@@ -1,7 +1,8 @@
 import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE, 
   REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, 
   LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, 
-  LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE
+  LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE,
+  DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE
 } from './constants';
 
 const initialState = {
@@ -119,6 +120,36 @@ export default function reducer(state = initialState, action = {}) {
         isLoaded: true,
         error: action.error
       });
+
+    // =========================================
+    // ============== DELETE USER ==============
+    // =========================================
+
+    case DELETE_USER_REQUEST:
+      console.log('\nDELETE_USER_REQUEST', action);
+      return Object.assign({}, state, {
+        isFetching: true,
+        isLoaded: false, //new
+      });
+    case DELETE_USER_SUCCESS:
+      console.log('\nDELETE_USER_SUCCESS', action);
+      return Object.assign({}, state, {
+        isFetching: false,
+        isLoaded: true,
+        //accessToken: null,
+        user: null,
+        isLogedIn: false,
+        isLogedOut: true
+      });
+    case DELETE_USER_FAILURE:
+      console.log('\nDELETE_USER_FAILURE', action);
+      return Object.assign({}, state, {
+        isFetching: false,
+        isLoaded: true,
+        error: action.error
+      });
+
+
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PostSystemDemand, MoneyDeposit, PersonalDetails, ChooseBidder, 
-  ChosenBids, DeveloperBids, RateSDResult, BidResult } from 'components';
+  ChosenBids, DeveloperBids, RateSDResult, BidResult, ViewEvaluation, MessageSuperUser, DeleteUser } from 'components';
 import { hasValue } from '../../utils/utilfunctions';
 import { Link } from 'react-router';
 
@@ -77,6 +77,7 @@ export default class AccountPage extends Component {
                 <DeveloperBids auth={auth} bid={bid}/>
                 <ChosenBids auth={auth} selectedBids={this.props.selectedBids}/>
                 <BidResult auth={auth} selectedBids={this.props.selectedBids} {...this.props.actions} />
+                <ViewEvaluation auth={auth} selectedBids={this.props.selectedBids}  {...this.props.actions}/>
               </div>
             }
 
@@ -88,7 +89,14 @@ export default class AccountPage extends Component {
                 </div>
                 <ChooseBidder bid={bid} systemdemands={systemdemands} {...this.props.actions} />
                 <ChosenBids auth={auth} selectedBids={this.props.selectedBids}/>     
-                <RateSDResult result={this.props.sdresults} />
+                <RateSDResult auth={auth} selectedBids={this.props.selectedBids} {...this.props.actions}/> 
+              </div>
+            }
+
+            {user.credential != "superuser" &&
+              <div>
+                <MessageSuperUser auth={auth} {...this.props.actions} />
+                <DeleteUser auth={auth} {...this.props.actions}/>
               </div>
             }
 

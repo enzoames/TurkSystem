@@ -15,6 +15,20 @@ export const RenderInput = ({label, value, name, placeholder, error, onChange, o
   )
 }
 
+export const RenderInputNumber = ({label, value, name, min, max, placeholder, error, onChange, outerGroupClassName, labelClassName, inputGroupClassName}) =>{
+  // const error_result = registerValidator(errorType, value)
+  return(
+    <div className={outerGroupClassName + (error ? ' has-error' : '')}>
+      {label ? <label className={labelClassName}>{label}</label> : '' }
+      <div className={inputGroupClassName}>
+        <input type='number' min={min} max={max} className="form-control" placeholder={placeholder} value={value} name={name} onChange={onChange} />
+        {error && <div className="text-danger">{error}</div>}
+      </div>
+
+    </div>
+  )
+}
+
 export const RenderPasswordInput = ({label, value, name, error, onChange, outerGroupClassName, labelClassName, inputGroupClassName}) =>{
   // const error_result = registerValidator(errorType, value)
   return(

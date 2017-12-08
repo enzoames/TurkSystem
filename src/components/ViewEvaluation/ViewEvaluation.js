@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { RenderInputNumber, RenderSubmitButton, RenderTextBox } from '../RenderForm/RenderForm';
+import { RenderInputNumber, RenderSubmitButton } from '../RenderForm/RenderForm';
 import { createValidatorNew } from '../../utils/validation';
 
-export default class RateSDResult extends Component {
+export default class ViewEvaluation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       sdFlag: "",
-      rate: "",
+      rateClient: "",
       note: "",
       errorObject: "",
       pageFields: "",
@@ -22,8 +22,7 @@ export default class RateSDResult extends Component {
     joblist.map( (item) => tempSdFlag.push({sdid: item.sysdemand.id, sdTitle: item.sysdemand.title, open: false}) );
 
     const tempPageFields = {
-      rate: ['required'],
-      note: ['required']
+      rateClient: ['required']
     };
     const errorContainer = {};
     Object.keys(tempPageFields).forEach(key => {
@@ -43,14 +42,13 @@ export default class RateSDResult extends Component {
     isThereError = this.checkErrorInValidation(fields);
     if (!isThereError) {
       const result = {
-        system_rating: parseInt(this.state.rate),
-        client_note: this.state.note,
+        client_rating: parseInt(this.state.rateClient),
         sdID: sdID
       };
       console.log('RESULT', result);
-      this.props.postRateDeveloper(result);
+      this.props.postRateClient(result);
       console.log('\n\nSuccess!!!');
-      this.setState({errorObject: nulls , rate: "", note:""})
+      this.setState({errorObject: nulls , rateClient: ""})
     }  
   } 
 
@@ -102,29 +100,35 @@ export default class RateSDResult extends Component {
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';
 
-    const renderEvaluateEachResult = () => {
+    const renderRateClientViewMessages = () => {
       const jobList = selectedBids.selectedList;
       const result = jobList.map( (item) => { 
         const sdFlags = this.state.sdFlag;
         const currentStatus = sdFlags.filter( (sd) => sd.sdid === item.sysdemand.id );
         const resultbox = <div>
-          {item.client_note === null &&
+          {item.client_note !== null &&
             <div>
             {item.is_completed &&
               <div className="col-md-6 panel panel-default">
                 <div className="col-md-12" onClick={ (e) => this.handleToggleForm(e, item.sysdemand.id)}>
-                  <h4>{item.sysdemand.title} completed by {item.developer.name + " " + item.developer.lastname} completed on {item.delivered_at}</h4>
+                  <h4>{item.sysdemand.title} | View your rating given by client {item.sysdemand.client.name + " " + item.sysdemand.client.lastname}</h4>
                 </div>
 
                 {currentStatus[0].open &&
-                <div className="col-md-12">
-                  <h4>Result</h4>
-                  <div className="panel panel-default">
-                    <span>{item.result}</span>
+                <div>
+                  <div className="col-md-12">
+                    <h4><u>Rating: {item.system_rating}</u></h4>
+                    <div className="panel panel-default">
+                      <span>Message from client: {item.client_note}</span>
+                    </div>
+                    <RenderInputNumber label="Rate Client 1 - 5" value={this.state.rateClient} name="rateClient" min={"1"} max={"5"} placeholder={""} error={this.state.errorObject.rateClient.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+                    <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id)} label="Submit" />
                   </div>
-                  <RenderInputNumber label="Rate developer's performace 1 - 5" value={this.state.rate} name="rate" min={"1"} max={"5"} placeholder={""} error={this.state.errorObject.rate.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-                  <RenderTextBox label="Evaluation Note *" value={this.state.note} name="note" placeholder="detailed evaluation note" rows={3} error={this.state.errorObject.note.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} textAreaClassName={labelClassName}/>
-                  <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id)} label="Submit" />
+
+                  {item.system_rating <= 3 && 
+                    <h4 className="text-danger">Don't like your rating? email client directly - {item.sysdemand.client.email} or message super user for any other complaints</h4>
+                  }
+
                 </div>
                 }
               </div>
@@ -135,16 +139,15 @@ export default class RateSDResult extends Component {
 
         return(resultbox);
       })
-
       return(result);
     }
 
     return (
-      <div className="rate-sd-result">
+      <div className="view-evaluation-result">
         <div className="col-md-12 col-lg-12">
-          <h1 className="bg-primary text-center">Rate the results posted by your chosen Developers</h1>
+          <h1 className="bg-primary text-center">Rate your Client and view evaluation</h1>
           <h4><strong>If any results avialable</strong><span className="text-danger"> Please click the submit button only once </span>. On your next log in, your account will update</h4>
-          {renderEvaluateEachResult()}
+          {renderRateClientViewMessages()}
         </div>
 
       </div>

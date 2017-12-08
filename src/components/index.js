@@ -27,3 +27,9 @@ export DeveloperBids from './DeveloperBids/DeveloperBids';
 
 export RateSDResult from './RateSDResult/RateSDResult';
 export BidResult from './BidResult/BidResult';
+
+export ViewEvaluation from './ViewEvaluation/ViewEvaluation';
+export MessageSuperUser from './MessageSuperUser/MessageSuperUser';
+
+
+export DeleteUser from './DeleteUser/DeleteUser';

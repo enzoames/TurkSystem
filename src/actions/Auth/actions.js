@@ -5,7 +5,9 @@ import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE,
   LOAD_TURKUSER_REQUEST, LOAD_TURKUSER_SUCCESS, LOAD_TURKUSER_FAILURE,
   UPDATE_USER_PROFILE_REQUEST, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILURE,
   DEPOSIT_MONEY_REQUEST, DEPOSIT_MONEY_SUCCESS, DEPOSIT_MONEY_FAILURE,
-  BID_RESET, CLIENT_SDS_RESET, SELECTED_BID_RESET
+  BID_RESET, CLIENT_SDS_RESET, SELECTED_BID_RESET,
+  MESSAGE_SU_REQUEST, MESSAGE_SU_SUCCESS, MESSAGE_SU_FAILURE,
+  DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE
 } from '../../redux/modules/constants';
 
 //import cookie from 'js-cookie';
@@ -63,6 +65,20 @@ export function logout() {
 }
 
 
+// ===========================================
+// ============== DELETE ACTION ==============
+// ===========================================
+
+export function deleteUser(body) {
+  return {
+    types: [DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE],
+    promise: client => client.post('api/turksystem/deleteuser/', {
+      data: body
+    })
+  };
+}
+
+
 // ==============================================
 // =============== GET SINGLE USER ==============
 // ==============================================
@@ -101,6 +117,20 @@ export function depositMoney(body){
   }
 }
 
+
+
+// =================================================
+// =============== MESSAGE SUPER USER ==============
+// =================================================
+
+export function messageSuperUser(body){
+  return{
+    types: [MESSAGE_SU_REQUEST, MESSAGE_SU_SUCCESS, MESSAGE_SU_FAILURE],
+    promise: (client) => client.post('api/turksystem/messagesu/', {
+      data: body
+    })
+  }
+}
 
 
 

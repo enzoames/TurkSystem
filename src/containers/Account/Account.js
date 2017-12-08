@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs, postSystemDemand } from '../../actions/SystemDemand/actions';
-import { fetchSelectedBids, submitChosenDeveloper, fetchSDResults } from '../../actions/Clients/actions';
-import { updateUserProfile, depositMoney } from '../../actions/Auth/actions';
+import { fetchSelectedBids, submitChosenDeveloper, fetchSDResults, postRateDeveloper } from '../../actions/Clients/actions';
+import { updateUserProfile, depositMoney, messageSuperUser, deleteUser, resetBid, resetClientSDs, resetSelectedBid } from '../../actions/Auth/actions';
 import { postSDResult } from '../../actions/Developers/actions';
 
 class Account extends Component {
@@ -67,15 +67,15 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults, postSDResult }, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults, postSDResult, postRateDeveloper, messageSuperUser, deleteUser, resetBid, resetClientSDs, resetSelectedBid }, dispatch)
 });
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   bid: state.bid,
   clientSDs: state.clientSDs,
-  selectedBids: state.selectedBids,
-  sdresults: state.sdresults
+  selectedBids: state.selectedBids
+  //sdresults: state.sdresults
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

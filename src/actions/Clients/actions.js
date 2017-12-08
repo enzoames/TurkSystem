@@ -1,7 +1,8 @@
 import { LOAD_CLIENTS_REQUEST, LOAD_CLIENTS_SUCCESS, LOAD_CLIENTS_FAILURE,
   LOAD_SELECTED_BIDS_REQUEST , LOAD_SELECTED_BIDS_SUCCESS, LOAD_SELECTED_BIDS_FAILURE,
   SUBMIT_CHOSEN_DEVELOPER_REQUEST, SUBMIT_CHOSEN_DEVELOPER_SUCCESS, SUBMIT_CHOSEN_DEVELOPER_FAILURE, 
-  LOAD_SD_RESULTS_REQUEST, LOAD_SD_RESULTS_SUCCESS, LOAD_SD_RESULTS_FAILURE
+  LOAD_SD_RESULTS_REQUEST, LOAD_SD_RESULTS_SUCCESS, LOAD_SD_RESULTS_FAILURE,
+  POST_RATE_DEV_REQUEST, POST_RATE_DEV_SUCCESS, POST_RATE_DEV_FAILURE
 } from '../../redux/modules/constants';
 
 // ==============================================
@@ -55,7 +56,18 @@ export function fetchSDResults(email) {
 }
 
 
+// ============================================
+// =============== POST RATE DEV ==============
+// ============================================
 
+export function postRateDeveloper(body){
+  return{
+    types: [POST_RATE_DEV_REQUEST, POST_RATE_DEV_SUCCESS, POST_RATE_DEV_FAILURE],
+    promise: (client) => client.put('api/turksystem/evaluatesystem/', {
+      data: body
+    })
+  }
+}
 
 
 
