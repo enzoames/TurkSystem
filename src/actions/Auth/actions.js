@@ -57,10 +57,12 @@ export function login(body) {
 // ============== LOGOUT ACTION ==============
 // ===========================================
 
-export function logout() {
+export function logout(body) {
   return {
     types: [LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE],
-    promise: client => client.post('api/turksystem/logout/')
+    promise: client => client.post('api/turksystem/logout/', {
+      data: body
+    })
   };
 }
 

@@ -63,7 +63,7 @@ export default class AccountPage extends Component {
             <div className="col-md-12 col-lg-12">
               <h3><u>Warnings</u></h3>
               <blockquote className="blockquote">
-                {user.warning > 0 ? (<h4>Account warnings: user.warning_count</h4>) : (<h4>No warnings on account</h4>)}
+                {user.warning > 0 ? (<h4>Account warnings: {user.warning_count}</h4>) : (<h4>No warnings on account</h4>)}
               </blockquote>
             </div>
 

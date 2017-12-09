@@ -63,7 +63,11 @@ export default class App extends Component {
     this.props.resetBid();
     this.props.resetClientSDs();
     this.props.resetSelectedBid();
-    this.props.logout();
+    const result = {
+      id: this.props.user.id
+    }
+    console.log("RESULT", result);
+    this.props.logout(result);
   };
 
   render() {
