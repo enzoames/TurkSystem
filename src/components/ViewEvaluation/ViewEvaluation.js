@@ -108,35 +108,39 @@ export default class ViewEvaluation extends Component {
         const sdFlags = this.state.sdFlag;
         const currentStatus = sdFlags.filter( (sd) => sd.sdid === item.sysdemand.id );
         const resultbox = <div>
-          {item.client_note !== null &&
-            <div>
-            {item.is_completed &&
-              <div className="col-md-6 panel panel-default">
-                <div className="col-md-12" onClick={ (e) => this.handleToggleForm(e, item.sysdemand.id)}>
-                  <h4>{item.sysdemand.title} | View your rating given by client {item.sysdemand.client.name + " " + item.sysdemand.client.lastname}</h4>
-                </div>
-
-                {currentStatus[0].open &&
-                <div>
-                  <div className="col-md-12">
-                    <h4><u>Rating: {item.system_rating}</u></h4>
-                    <div className="panel panel-default">
-                      <span>Message from client: {item.client_note}</span>
-                    </div>
-                    <RenderInputNumber label="Rate Client 1 - 5" value={this.state.rateClient} name="rateClient" min={"1"} max={"5"} placeholder={""} error={this.state.errorObject.rateClient.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-                    <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id, item.sysdemand.client.email)} label="Submit" />
+        {!item.finish &&
+          <div>
+            {item.client_note !== null &&
+              <div>
+              {item.is_completed &&
+                <div className="col-md-6 panel panel-default">
+                  <div className="col-md-12" onClick={ (e) => this.handleToggleForm(e, item.sysdemand.id)}>
+                    <h4>{item.sysdemand.title} | View your rating given by client {item.sysdemand.client.name + " " + item.sysdemand.client.lastname}</h4>
                   </div>
 
-                  {item.system_rating <= 3 && 
-                    <h4 className="text-danger">Don't like your rating? email client directly - {item.sysdemand.client.email} or message super user for any other complaints</h4>
-                  }
+                  {currentStatus[0].open &&
+                  <div>
+                    <div className="col-md-12">
+                      <h4><u>Rating: {item.system_rating}</u></h4>
+                      <div className="panel panel-default">
+                        <span>Message from client: {item.client_note}</span>
+                      </div>
+                      <RenderInputNumber label="Rate Client 1 - 5" value={this.state.rateClient} name="rateClient" min={"1"} max={"5"} placeholder={""} error={this.state.errorObject.rateClient.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
+                      <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id, item.sysdemand.client.email)} label="Submit" />
+                    </div>
 
+                    {item.system_rating <= 3 && 
+                      <h4 className="text-danger">Don't like your rating? email client directly - {item.sysdemand.client.email} or message super user for any other complaints</h4>
+                    }
+
+                  </div>
+                  }
                 </div>
-                }
+              }
               </div>
             }
-            </div>
-          }
+          </div>
+        }
         </div>
 
         return(resultbox);
