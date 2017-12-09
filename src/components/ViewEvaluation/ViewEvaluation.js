@@ -72,7 +72,7 @@ export default class ViewEvaluation extends Component {
   checkErrorInValidation = (fields) => {
     let newFields = fields;
     if (fields.errorCount === 0) {
-      let isThereRateError = this.checkRate(fields.state.rate.value)
+      let isThereRateError = this.checkRate(fields.state.rateClient.value)
       if(!isThereRateError){
         return false;
       }
@@ -96,6 +96,7 @@ export default class ViewEvaluation extends Component {
   }
 
   render() {
+    console.log(" ==== VIEW EVALUATION: ", this.props);
     const { selectedBids } = this.props;
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';

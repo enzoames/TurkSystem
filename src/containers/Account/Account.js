@@ -7,7 +7,7 @@ import { AccountPage } from 'components';
 import { fetchBidByEmail, fetchClientSDs, postSystemDemand } from '../../actions/SystemDemand/actions';
 import { fetchSelectedBids, submitChosenDeveloper, fetchSDResults, postRateDeveloper } from '../../actions/Clients/actions';
 import { updateUserProfile, depositMoney, messageSuperUser, deleteUser, resetBid, resetClientSDs, resetSelectedBid } from '../../actions/Auth/actions';
-import { postSDResult } from '../../actions/Developers/actions';
+import { postSDResult, postRateClient } from '../../actions/Developers/actions';
 
 class Account extends Component {
   constructor(props) {
@@ -67,7 +67,7 @@ class Account extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults, postSDResult, postRateDeveloper, messageSuperUser, deleteUser, resetBid, resetClientSDs, resetSelectedBid }, dispatch)
+  actions: bindActionCreators({fetchBidByEmail, fetchClientSDs, updateUserProfile, submitChosenDeveloper, fetchSelectedBids, depositMoney, postSystemDemand, fetchSDResults, postSDResult, postRateDeveloper, messageSuperUser, deleteUser, resetBid, resetClientSDs, resetSelectedBid, postRateClient }, dispatch)
 });
 
 const mapStateToProps = (state) => ({

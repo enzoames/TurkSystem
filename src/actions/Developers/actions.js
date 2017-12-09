@@ -1,5 +1,6 @@
 import { LOAD_DEVELOPERS_REQUEST, LOAD_DEVELOPERS_SUCCESS, LOAD_DEVELOPERS_FAILURE,
-	POST_SD_RESULT_REQUEST, POST_SD_RESULT_SUCCESS, POST_SD_RESULT_FAILURE
+	POST_SD_RESULT_REQUEST, POST_SD_RESULT_SUCCESS, POST_SD_RESULT_FAILURE,
+  POST_RATE_CLIENT_REQUEST, POST_RATE_CLIENT_SUCCESS, POST_RATE_CLIENT_FAILURE
  } from '../../redux/modules/constants';
 
 // ==============================================
@@ -26,3 +27,18 @@ export function postSDResult(body){
     })
   }
 }
+
+
+// ========================================================
+// =============== POST SYSTEM DEMAND RESULT ==============
+// ========================================================
+
+export function postRateClient(body){
+  return{
+    types: [POST_RATE_CLIENT_REQUEST, POST_RATE_CLIENT_SUCCESS, POST_RATE_CLIENT_FAILURE],
+    promise: (client) => client.put('api/turksystem/rateclient/', {
+      data: body
+    })
+  }
+}
+

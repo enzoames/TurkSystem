@@ -71,8 +71,6 @@ export default class BidResult extends Component {
 
   render() {
     const { selectedBids } = this.props;
-    console.log(" +++++ PROPS in BidResult:", this.props);
-    console.log(" +++++ STATE in BidResult:", this.state);
     const outerGroupClassName = 'col-sm-12 col-md-12 ';
     const labelClassName = 'col-sm-12 col-md-12';
     const inputGroupClassName = 'col-sm-12 col-md-12';
