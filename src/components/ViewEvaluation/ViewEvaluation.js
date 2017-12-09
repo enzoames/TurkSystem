@@ -35,7 +35,7 @@ export default class ViewEvaluation extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit = (e, sdID) => {
+  handleSubmit = (e, sdID, clientEmail) => {
     const nulls = this.state.NullErrorContainer;    
     const fields = this.checkValidation(this.state.pageFields, this.state);
     let isThereError = true;
@@ -43,7 +43,8 @@ export default class ViewEvaluation extends Component {
     if (!isThereError) {
       const result = {
         client_rating: parseInt(this.state.rateClient),
-        sdID: sdID
+        sdID: sdID,
+        client: clientEmail
       };
       console.log('RESULT', result);
       this.props.postRateClient(result);
@@ -122,7 +123,7 @@ export default class ViewEvaluation extends Component {
                       <span>Message from client: {item.client_note}</span>
                     </div>
                     <RenderInputNumber label="Rate Client 1 - 5" value={this.state.rateClient} name="rateClient" min={"1"} max={"5"} placeholder={""} error={this.state.errorObject.rateClient.error} onChange={this.handleChange} outerGroupClassName={outerGroupClassName} labelClassName={labelClassName} inputGroupClassName={inputGroupClassName} />
-                    <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id)} label="Submit" />
+                    <RenderSubmitButton outerGroupClassName={outerGroupClassName} buttonClassName="" onClick={(e) => this.handleSubmit(e, item.sysdemand.id, item.sysdemand.client.email)} label="Submit" />
                   </div>
 
                   {item.system_rating <= 3 && 
